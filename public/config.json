@@ -13,21 +13,10 @@
           "step1Label": "Configure Activity"
         }
     },
-    "wizardSteps": [
-        { "label": "Configure Activity", "key": "step1" }
-    ],
+    
     "userInterfaces": {
-        "configModal": {
-          "size": "medium"
-        
-        }
-    },
-    "schema": {
-        "arguments": {
-            "execute": {
-                "inArguments": [],
-                "outArguments": []
-            }
+        "configInspector": {
+          "size": "medium"        
         }
     }
 }
