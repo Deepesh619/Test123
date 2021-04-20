@@ -1,5 +1,5 @@
 
-var connection = new Postmonger.session();
+var connection = new Postmonger.Session();
 
 connection.trigger('ready');
 
