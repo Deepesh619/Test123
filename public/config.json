@@ -13,22 +13,6 @@
           "step1Label": "Configure Activity"
         }
     },
-    "arguments": {
-        "execute": {
-           "inArguments":[
-				{
-                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
-                }									
-			],
-          "outArguments": [],
-            "verb": "POST",
-            "body": "",
-            "header": "",
-            "format": "json",
-            "useJwt": true
-            
-        }
-    },
     "wizardSteps": [
         { "label": "Configure Activity", "key": "step1" }
     ],
