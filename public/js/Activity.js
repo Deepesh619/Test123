@@ -1,5 +1,4 @@
 
-import Postmonger from 'postmonger';
 var connection = new Postmonger.session();
 
 connection.trigger('ready');
