@@ -12,10 +12,5 @@
           "description": "A Template for a custom Journey Builder activity",
           "step1Label": "Configure Activity"
         }
-    },
-    "userInterfaces": {
-        "configInspector": {
-          "size": "medium"        
-        }
     }
   }
