@@ -13,7 +13,6 @@
           "step1Label": "Configure Activity"
         }
     },
-    
     "userInterfaces": {
         "configInspector": {
           "size": "medium"        
