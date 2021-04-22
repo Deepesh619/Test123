@@ -35,4 +35,4 @@ function insertDE() {
     
     
 }
-export default{insertDE};
+module.export.insertDE=insertDE;
