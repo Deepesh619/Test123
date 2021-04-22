@@ -1,5 +1,4 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+
 var express = require('express');
 var app = express()
 const axios = require('axios');
