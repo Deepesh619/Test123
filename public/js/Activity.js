@@ -33,7 +33,7 @@ function onGetTokens(tokens) {
 function insertDE() {
     
     app.set('port', (process.env.PORT || 5000))
-    app.use(static(__dirname + '/public'))
+    app.use(__dirname + '/public')
 
     app.get('/connecttoMCData', function(request, responsefromWeb) {
 	
