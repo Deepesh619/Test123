@@ -14,12 +14,11 @@
                 baseUrl: 'js'   
             };
 
-            var dependencies = [
-            
+            var dependencies = [            
             'Activity'
             ];
 
-            require(config, dependencies);
+            require([config, dependencies]);
         })();
     </script>
 </head>
