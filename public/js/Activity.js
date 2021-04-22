@@ -1,5 +1,5 @@
 
-import express, { static } from 'express';
+import express from 'express';
 var app = express()
 import axios from 'axios';
 var authTokens = {};
