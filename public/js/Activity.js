@@ -1,6 +1,6 @@
-var express = require('express')
+import express, { static } from 'express';
 var app = express()
-const axios = require('axios');
+import axios from 'axios';
 var authTokens = {};
 var payload = [
     {
@@ -32,7 +32,7 @@ function onGetTokens(tokens) {
 function insertDE() {
     
     app.set('port', (process.env.PORT || 5000))
-    app.use(express.static(__dirname + '/public'))
+    app.use(static(__dirname + '/public'))
 
     app.get('/connecttoMCData', function(request, responsefromWeb) {
 	
@@ -46,7 +46,7 @@ function insertDE() {
             }
           })
             .then(function(response) {
-                    var json = CircularJSON.stringify(response);
+                    var json = response;
               console.log(json);
               responsefromWeb.send(json);
             }) 
@@ -58,4 +58,4 @@ function insertDE() {
     console.log(payload);
     
 }
-module.exports={insertDE};
+export default{insertDE};
