@@ -1,7 +1,7 @@
 
-//import express from 'express';
-//var app = express()
-//import axios from 'axios';
+var express = require('express')
+var app = express()
+const axios = require('axios');
 var authTokens = {};
 var payload = [
     {
