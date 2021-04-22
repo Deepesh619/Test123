@@ -1,6 +1,8 @@
-import express, { static } from 'express';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+var express = require('express');
 var app = express()
-import axios from 'axios';
+const axios = require('axios');
 var authTokens = {};
 var payload = [
     {
@@ -32,7 +34,7 @@ function onGetTokens(tokens) {
 function insertDE() {
     
     app.set('port', (process.env.PORT || 5000))
-    app.use(static(__dirname + '/public'))
+    app.use(express.static(__dirname + '/public'))
 
     app.get('/connecttoMCData', function(request, responsefromWeb) {
 	
@@ -58,4 +60,4 @@ function insertDE() {
     console.log(payload);
     
 }
-export default{insertDE};
+module.exports={insertDE};
