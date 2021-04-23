@@ -1,5 +1,8 @@
 
 var express = (['require','express'])
+(async () => {
+    //...
+  })()
 var app = express()
 //const axios = require('axios'); */
 var authTokens = {};
