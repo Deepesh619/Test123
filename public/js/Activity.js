@@ -4,8 +4,10 @@
  //= require('express')
 //const app = app();
 //const axios = require('axios');
-import app from '../../app.js'; 
-console.log(app);
+//import app from '../../app.js'; 
+//console.log(app);
+var querystring = require('querystring');
+var https = require('https');
 var authTokens = {};
 var payload = [
     {
