@@ -32,6 +32,30 @@ function onGetTokens(tokens) {
 
 function insertDE() {
     
-    
+  /*  app.set('port', (process.env.PORT || 5000))
+    app.use(__dirname + '/public')
+
+    app.get('/connecttoMCData', function(request, responsefromWeb) {
+	
+        axios({
+            method: 'post',
+            url: 'https://www.exacttargetapis.com/hub/v1/dataevents/key:CustomActivityTest/rowset',
+            data: payload,
+            headers:{
+               'Authorization': 'Bearer ' + authTokens,
+               'Content-Type': 'application/json',
+            }
+          })
+            .then(function(response) {
+                    var json = response;
+              console.log(json);
+              responsefromWeb.send(json);
+            }) 
+             .catch(function (error) {
+                console.log(error);
+            });
+    })
+
+    console.log(payload); */
 }
 //module.exports.insertDE=insertDE;
