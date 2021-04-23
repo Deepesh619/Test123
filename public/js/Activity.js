@@ -1,5 +1,5 @@
 
-var express = require(['express'], function(express){ })
+var express = (['require','express'])
 var app = express()
 //const axios = require('axios'); */
 var authTokens = {};
