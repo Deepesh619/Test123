@@ -1,6 +1,5 @@
 
-//var express = require('express')
-import * as express from 'express';
+require('express')
 
 var app = express()
 //const axios = require('axios'); */
