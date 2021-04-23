@@ -1,10 +1,10 @@
 
 //const express = require(['express']);
-//import express from '/express';
+//import express from '../../node_modules/express';
  //= require('express')
 //const app = app();
 //const axios = require('axios');
-import app from '../../app'; 
+import app from '../../app.js'; 
 console.log(app);
 var authTokens = {};
 var payload = [
