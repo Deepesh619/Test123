@@ -31,10 +31,10 @@ connection.on('clickedNext',function(){
     connection.trigger('updateActivity', configuration);
 });
 
-/*function onGetTokens(tokens) {
+function onGetTokens(tokens) {
     console.log(tokens);
-    authTokens = tokens;
-}*/
+   // authTokens = tokens;
+}
 
 function insertDE() {
     
