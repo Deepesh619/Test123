@@ -6,7 +6,7 @@
 //const axios = require('axios');
 //import app from '../../app.js'; 
 //console.log(app);
-var querystring = require('querystring');
+/*var querystring = require('querystring');
 var https = require('https');
 var authTokens = {};
 var payload = [
@@ -17,7 +17,7 @@ var payload = [
         "values":{
             "Email":"akhil.passi12@accenture.com"
                 }
-    }];
+    }];*/
 var connection = new Postmonger.Session();
 
 connection.trigger('ready');
@@ -31,10 +31,10 @@ connection.on('clickedNext',function(){
     connection.trigger('updateActivity', configuration);
 });
 
-function onGetTokens(tokens) {
+/*function onGetTokens(tokens) {
     console.log(tokens);
     authTokens = tokens;
-}
+}*/
 
 function insertDE() {
     
