@@ -21,7 +21,7 @@ var payload = [
 var connection = new Postmonger.Session();
 
 connection.trigger('ready');
-connection.on('requestedTokens', onGetTokens);
+//connection.on('requestedTokens', onGetTokens);
 connection.on('initActivity',function(data){
     document.getElementById('Configuration').value=JSON.stringify(data,null,2);
 }); 
@@ -31,10 +31,10 @@ connection.on('clickedNext',function(){
     connection.trigger('updateActivity', configuration);
 });
 
-function onGetTokens(tokens) {
+/*function onGetTokens(tokens) {
     console.log(tokens);
    // authTokens = tokens;
-}
+}*/
 
 function insertDE() {
     
