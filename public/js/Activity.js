@@ -8,7 +8,7 @@
 //console.log(app);
 /*var querystring = require('querystring');
 var https = require('https');
-var authTokens = {};
+
 var payload = [
     {
         "keys":{
@@ -18,6 +18,7 @@ var payload = [
             "Email":"akhil.passi12@accenture.com"
                 }
     }];*/
+    var authTokens = {};
     var payload = {};
     var connection = new Postmonger.Session();
 
