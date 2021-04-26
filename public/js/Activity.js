@@ -29,16 +29,17 @@ connection.on('initActivity',function(data){
     if (data) {
         payload = data;
     }
-    document.getElementById('Configuration').value=JSON.stringify(data,null,2);
+    document.getElementById('Configuration').value='';
 }); 
 
 connection.on('clickedNext',function(){
-
+    var DEName = document.getElementById('DEName').value;
+    console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
         "Email": "akhil.passi444@accenture.com",
-        "ContactKey" : "12345678"
-       
+        "ContactKey" : "12345678",
+       "DEName" : DEName
     }];
     payload['arguments'].execute.useJwt = true;
     payload['configurationArguments'].save.useJwt = true;

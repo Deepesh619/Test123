@@ -119,7 +119,7 @@ var authHeaders = {
 var accesstoken=null;
   
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
-var MCEndpoint = '/hub/v1/dataevents/key:D4627FEA-5CDE-4641-9AEA-A6EF9DA8881F/rowset';
+var MCEndpoint = '';
 var rowData = [{
   "keys":{
       "ContactKey": "1234"
@@ -191,11 +191,7 @@ exports.execute = function (req, res) {
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
             // decoded in arguments
-            var decodedArgs = decoded.inArguments[0].ContactKey;
-            console.log('ContactKey : '+decodedArgs);
-            console.log('COmplete request : '+req.body);
-            console.log('Fields : '+req.body.inArguments[0].fields);
-           // console.log('Fields22 : '+req.body[''].inArguments[0].fields);
+            MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
@@ -203,7 +199,7 @@ exports.execute = function (req, res) {
         }
     }); 
     
-    
+    console.log('MCEndpoint is : ', MCEndpoint);
       //  logData(req);
      performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
         accesstoken = data.access_token;
