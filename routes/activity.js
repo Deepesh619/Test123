@@ -192,8 +192,10 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0].ContactKey;
-            console.log('This is start of execution- : '+decodedArgs);
-            console.log(req.body);
+            console.log('ContactKey : '+decodedArgs);
+            console.log('COmplete request : '+req.body);
+            console.log('Fields : '+req.body.inArguments[0].fields);
+           // console.log('Fields22 : '+req.body[''].inArguments[0].fields);
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
