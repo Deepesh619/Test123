@@ -70,7 +70,7 @@ exports.save = function (req, res) {
     //console.log( req.body );
     logData(req);
     //console.log('Param- :'+JSON.stringify(req,null,2))
-    const str = CircularJSON.stringify(req);
+   // const str = CircularJSON.stringify(req);
     //JSON.parse(str)
     console.log('Param- '+str);
     res.send(200, 'Save');
@@ -163,7 +163,7 @@ exports.execute = function (req, res) {
      res.send(200, 'Execute'); 
 
     // example on how to decode JWT
-   /* JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
         if (err) {
@@ -182,7 +182,7 @@ exports.execute = function (req, res) {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    }); */
+    }); 
 };
 
 
