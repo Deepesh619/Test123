@@ -109,7 +109,7 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
       headers: headers
     };
   
-    var req = https.request(options, function(res) {
+    var req = http.request(options, function(res) {
       res.setEncoding('utf-8');
   
       var responseString = '';
