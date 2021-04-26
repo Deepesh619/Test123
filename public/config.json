@@ -4,7 +4,8 @@
       "icon": "images/icon.png",
       "category": "message"
   },
-  "type": "myActivityType",
+  "key":"REST-1",
+  "type": "REST",
   "lang": {
       "en-US": {
           "name": "Custom Activity (Workflow API v1.1)",
