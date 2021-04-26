@@ -86,7 +86,7 @@ var authHeaders = {
 };
 var accesstoken=null;
   
-var MCHost = 'https://localhost:8080';
+var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '/hub/v1/dataevents/key:06AE4ABE-B8E1-49E7-BF3E-D8C72B5ADA38/rowset';
 var rowData = [{
   "keys":{
