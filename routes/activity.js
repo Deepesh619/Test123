@@ -96,10 +96,8 @@ var rowData = [{
       "Email":"akhil.passi122@accenture.com"
           }
  
-
-  }
-}
-];
+        }];
+  
 var method="POST";
 
 function  performPostRequest(endpoint,host,headers, method, data, success) {
