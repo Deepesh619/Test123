@@ -1,5 +1,6 @@
 'use strict';
 var util = require('util');
+var express = require('express');
 
 // Deps
 const Path = require('path');
@@ -7,6 +8,7 @@ const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
 var querystring = require('querystring');
+const { Console } = require('console');
 exports.logExecuteData = [];
 
 function logData(req) {
@@ -65,6 +67,8 @@ exports.save = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
+    Console.log('Param- :'+req['key'])
+   
     res.send(200, 'Save');
 };
 
@@ -147,15 +151,15 @@ exports.execute = function (req, res) {
   
       console.log('This is start of execution- : '+req);
     //  logData(req);
-    /* performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
+     performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
         accesstoken = data.access_token;
         console.log('Access token is: ', accesstoken);
         insertRecordsIntoDE();
       });
-     res.send(200, 'Execute'); */
+     res.send(200, 'Execute'); 
 
     // example on how to decode JWT
-    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+   /* JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
         if (err) {
@@ -174,7 +178,7 @@ exports.execute = function (req, res) {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    }); 
+    }); */
 };
 
 
