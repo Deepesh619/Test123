@@ -20,11 +20,15 @@ app.use(bodyParser.raw({type: 'application/jwt'}));
 //app.use(express.methodOverride());
 //app.use(express.favicon());
 
+//added to run locally remove later
+app.listen(3000, '127.0.0.1');
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Express in Development Mode
 if ('development' == app.get('env')) {
   app.use(errorhandler());
+
 }
 
 // HubExchange Routes
