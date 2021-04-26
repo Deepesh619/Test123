@@ -177,7 +177,7 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
 
 exports.execute = function (req, res) {
   
-      console.log('This is start of execution- : '+req);
+     // console.log('This is start of execution- : '+req);
     
     
       JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -192,14 +192,14 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
-            
-            logData(req);
+            console.log('This is start of execution- : '+decodedArgs);
+          //  logData(req);
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    });
+    }); 
     
     
       //  logData(req);
