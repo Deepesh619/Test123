@@ -40,7 +40,8 @@ connection.on('clickedNext',function(){
         "ContactKey" : "12345678"
        
     }];
-    
+    payload['arguments'].execute.useJwt = true;
+    payload['configurationArguments'].save.useJwt = true;
     payload['metaData'].isConfigured = true;
     payload['key'] = 'REST-1';
     payload['type'] = 'REST';
