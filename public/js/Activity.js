@@ -29,7 +29,7 @@ connection.on('initActivity',function(data){
     if (data) {
         payload = data;
     }
-  //  document.getElementById('DEName').value='Enter DE External Key';
+    document.getElementById('DEName').value= payload['arguments'].execute.inArguments.DEName;
 }); 
 
 connection.on('clickedNext',function(){
