@@ -90,7 +90,7 @@ var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '/hub/v1/dataevents/key:D4627FEA-5CDE-4641-9AEA-A6EF9DA8881F/rowset';
 var rowData = [{
   "keys":{
-      "ContactKey": "12345678"
+      "ContactKey": "1234"
           },
   "values":{
       "Email":"akhil.passi122@accenture.com"
@@ -146,15 +146,16 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
 exports.execute = function (req, res) {
   
       console.log('This is start of execution- : '+req);
-      logData(req);
-    performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
+    //  logData(req);
+    /* performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
         accesstoken = data.access_token;
         console.log('Access token is: ', accesstoken);
         insertRecordsIntoDE();
       });
-     res.send(200, 'Execute');
+     res.send(200, 'Execute'); */
+
     // example on how to decode JWT
-  /*  JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
         if (err) {
@@ -173,7 +174,7 @@ exports.execute = function (req, res) {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    }); */
+    }); 
 };
 
 
