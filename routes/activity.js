@@ -68,12 +68,36 @@ exports.edit = function (req, res) {
 exports.save = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-    logData(req);
+    console.log('JWT secret- '+process.env.jwtSecret);
     //console.log('Param- :'+JSON.stringify(req,null,2))
    // const str = CircularJSON.stringify(req);
     //JSON.parse(str)
-    console.log('Param- '+str);
-    res.send(200, 'Save');
+
+    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+
+      // verification error -> unauthorized request
+      if (err) {
+          console.error(err);
+          return res.status(401).end();
+      }
+
+      if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
+          
+          // decoded in arguments
+          var decodedArgs = decoded.inArguments[0];
+          console.log('Start- ');
+          logData(req);
+          console.log('End- ');
+          res.send(200, 'Save');
+      } else {
+          console.error('inArguments invalid.');
+          return res.status(400).end();
+      }
+  }); 
+
+   // res.send(200, 'Save');
+
+
 };
 
 /*
@@ -163,7 +187,7 @@ exports.execute = function (req, res) {
      res.send(200, 'Execute'); 
 
     // example on how to decode JWT
-    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+   /* JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
         if (err) {
@@ -182,7 +206,7 @@ exports.execute = function (req, res) {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    }); 
+    }); */
 };
 
 
