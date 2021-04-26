@@ -2,6 +2,8 @@
 var util = require('util');
 var express = require('express');
 
+var CircularJSON = require('circular-json');
+
 // Deps
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
