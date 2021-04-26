@@ -87,7 +87,7 @@ var authHeaders = {
 var accesstoken=null;
   
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
-var MCEndpoint = '/hub/v1/dataevents/key:06AE4ABE-B8E1-49E7-BF3E-D8C72B5ADA38/rowset';
+var MCEndpoint = '/hub/v1/dataevents/key:D4627FEA-5CDE-4641-9AEA-A6EF9DA8881F/rowset';
 var rowData = [{
   "keys":{
       "ContactKey": "0033B00000V9hUFAW"
