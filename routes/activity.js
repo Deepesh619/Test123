@@ -182,6 +182,7 @@ exports.publish = function (req, res) {
     //console.log( req.body );
     logData(req);
     res.send(200, 'Publish');
+    console.log('Published');
 };
 
 /*
