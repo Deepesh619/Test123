@@ -18,23 +18,37 @@ var payload = [
             "Email":"akhil.passi12@accenture.com"
                 }
     }];*/
-var connection = new Postmonger.Session();
+    var payload = {};
+    var connection = new Postmonger.Session();
 
 connection.trigger('ready');
-//connection.on('requestedTokens', onGetTokens);
+connection.on('requestedTokens', onGetTokens);
 connection.on('initActivity',function(data){
-    document.getElementById('Configuration').value=JSON.stringify(data,null,2);
+    console.log(data);
+    if (data) {
+        payload = data;
+    }
 }); 
 
 connection.on('clickedNext',function(){
-    var configuration= JSON.parse(document.getElementById('Configuration').value);
-    connection.trigger('updateActivity', configuration);
+
+    payload['arguments'].execute.inArguments = [{
+        "tokens": authTokens,
+        "Email": "akhil.passi444@accenture.com",
+        "ContactKey" : "0033B00HHH9hUFQAZ"
+    }];
+    
+    payload['metaData'].isConfigured = true;
+
+    console.log(payload);
+    connection.trigger('updateActivity', payload);
 });
 
-/*function onGetTokens(tokens) {
+
+function onGetTokens(tokens) {
     console.log(tokens);
-   // authTokens = tokens;
-}*/
+    authTokens = tokens;
+}
 
 function insertDE() {
     
