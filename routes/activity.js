@@ -97,10 +97,10 @@ var rowData = [{
           }*/
   "keys":{
        
-        "ContactKey":"{{Contact.Attribute.CustomActivityTest.ContactKey}}"
+        "ContactKey":"{{Contact.Default.ContactKey}}"
   },
   "values":{
-  "Email":"{{Contact.Attribute.CustomActivityTest.Email}}"
+  "Email":"{{Contact.Default.Email}}"
 
   }
 }
