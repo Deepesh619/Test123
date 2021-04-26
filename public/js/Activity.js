@@ -41,7 +41,8 @@ connection.on('clickedNext',function(){
     }];
     
     payload['metaData'].isConfigured = true;
-    //payload.key = 'REST';
+    payload['key'] = 'REST-1';
+    payload['type'] = 'REST';
     console.log(payload);
     connection.trigger('updateActivity', payload);
 });
