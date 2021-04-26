@@ -73,7 +73,7 @@ exports.save = function (req, res) {
    // const str = CircularJSON.stringify(req);
     //JSON.parse(str)
 
-    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+   /* JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
       // verification error -> unauthorized request
       if (err) {
@@ -93,9 +93,9 @@ exports.save = function (req, res) {
           console.error('inArguments invalid.');
           return res.status(400).end();
       }
-  }); 
+  }); */
 
-   // res.send(200, 'Save');
+    res.send(200, 'Save');
 
 
 };
@@ -178,16 +178,9 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
 exports.execute = function (req, res) {
   
       console.log('This is start of execution- : '+req);
-    //  logData(req);
-     performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
-        accesstoken = data.access_token;
-        console.log('Access token is: ', accesstoken);
-        insertRecordsIntoDE();
-      });
-     res.send(200, 'Execute'); 
-
-    // example on how to decode JWT
-   /* JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+    
+    
+      JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
         if (err) {
@@ -206,7 +199,19 @@ exports.execute = function (req, res) {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    }); */
+    });
+    
+    
+      //  logData(req);
+     performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
+        accesstoken = data.access_token;
+        console.log('Access token is: ', accesstoken);
+        insertRecordsIntoDE();
+      });
+    // res.send(200, 'Execute'); 
+
+    // example on how to decode JWT
+     
 };
 
 
