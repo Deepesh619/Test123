@@ -131,7 +131,7 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
 
   function insertRecordsIntoDE(){
     //var authuri = 'Bearer ' + accesstoken;
-    console.log(authuri);
+    //console.log(authuri);
     var MCHeaders = {
       'Content-Type': 'application/json',
       'Authorization' : 'Bearer ' + accesstoken
