@@ -2,7 +2,7 @@
 var util = require('util');
 var express = require('express');
 
-var CircularJSON = require('circular-json');
+//var CircularJSON = require('circular-json');
 
 // Deps
 const Path = require('path');
