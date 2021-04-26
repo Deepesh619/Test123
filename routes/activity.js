@@ -89,18 +89,13 @@ var accesstoken=null;
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '/hub/v1/dataevents/key:D4627FEA-5CDE-4641-9AEA-A6EF9DA8881F/rowset';
 var rowData = [{
-  /*"keys":{
+  "keys":{
       "ContactKey": "0033B00000V9hUFAW"
           },
   "values":{
       "Email":"akhil.passi122@accenture.com"
-          }*/
-  "keys":{
-       
-        "ContactKey":"{{Contact.Default.ContactKey}}"
-  },
-  "values":{
-  "Email":"{{Contact.Default.Email}}"
+          }
+ 
 
   }
 }
@@ -151,7 +146,8 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
   }
 
 exports.execute = function (req, res) {
-      
+  
+      console.log('This is start of execution- : '+req);
     performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
         accesstoken = data.access_token;
         console.log('Access token is: ', accesstoken);

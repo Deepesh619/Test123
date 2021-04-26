@@ -36,10 +36,9 @@ connection.on('clickedNext',function(){
 
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        //"Email": "akhil.passi444@accenture.com",
-        //"ContactKey" : "0033B00HHH9hUFQAZ"
-        "Email":"{{Contact.Default.Email}}",
-        "ContactKey":"{{Contact.Default.ContactKey}}"
+        "Email": "akhil.passi444@accenture.com",
+        "ContactKey" : "12345678"
+       
     }];
     
     payload['metaData'].isConfigured = true;
