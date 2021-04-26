@@ -191,9 +191,9 @@ exports.execute = function (req, res) {
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
             // decoded in arguments
-            var decodedArgs = decoded.inArguments[0];
+            var decodedArgs = decoded.inArguments[0].ContactKey;
             console.log('This is start of execution- : '+decodedArgs);
-          //  logData(req);
+            console.log(req.body);
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
