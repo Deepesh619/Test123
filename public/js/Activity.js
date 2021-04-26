@@ -29,6 +29,7 @@ connection.on('initActivity',function(data){
     if (data) {
         payload = data;
     }
+    document.getElementById('Configuration').value=JSON.stringify(data,null,2);
 }); 
 
 connection.on('clickedNext',function(){
