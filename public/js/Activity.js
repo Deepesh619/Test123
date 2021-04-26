@@ -29,7 +29,7 @@ connection.on('initActivity',function(data){
     if (data) {
         payload = data;
     }
-    document.getElementById('DEName').value= payload['arguments'].execute.inArguments.DEName;
+    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
 }); 
 
 connection.on('clickedNext',function(){
