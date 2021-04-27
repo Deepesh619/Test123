@@ -14,21 +14,18 @@ connection.on('initActivity',function(data){
     document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
     document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
 }); 
-
-
- var eventDefinitionKey;
+var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
 
 connection.on('requestedTriggerEventDefinition',
 function(eventDefinitionModel) {
-console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
+//console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
     if(eventDefinitionModel){
-
-        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        console.log(">>>Event Definition Key " + eventDefinitionKey);
+      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+      //  console.log(">>>Event Definition Key " + eventDefinitionKey);
         //If you want to see all
-        console.log('>>>Request Trigger', 
-        JSON.stringify(eventDefinitionModel));
+        //console.log('>>>Request Trigger', 
+        //JSON.stringify(eventDefinitionModel));
     }
 
 }); 
@@ -56,7 +53,7 @@ connection.on('clickedNext',function(){
     payload['metaData'].isConfigured = true;
     payload['key'] = 'REST-1';
     payload['type'] = 'REST';
-    console.log('Total PAyload: - '+JSON.stringify(payload));
+   // console.log('Total PAyload: - '+JSON.stringify(payload));
     connection.trigger('updateActivity', payload);
 });
 
