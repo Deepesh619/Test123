@@ -120,7 +120,7 @@ var accesstoken=null;
   
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
-var rowData = [{
+/* var rowData = [{
   "keys":{
       "ContactKey": "1234"
           },
@@ -128,7 +128,7 @@ var rowData = [{
       "Email":"akhil.passi122@accenture.com"
           }
  
-        }];
+        }]; */
   
 var method="POST";
 
@@ -192,17 +192,17 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
-
-           /* var rowData = [{
+            
+             rowData = [{
               "keys":{
-                  "ContactKey": ""
+                  "ContactKey":"4321"
                       },
               "values":{
-                  "Email":""
+                  "Email":"abc@gmail.com"
                       }
              
-                    }]; */
-
+                    }]; 
+                    console.log("ContactKey : " + decoded.inArguments[0].Email);
 
             res.send(200, 'Execute');
         } else {
