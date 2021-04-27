@@ -121,7 +121,8 @@ var accesstoken=null;
   
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
- var rowData = [{
+ 
+var rowData = [{
   "keys":{
       "ContactKey": "4567"
           },
@@ -171,7 +172,7 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
       'Content-Type': 'application/json',
       'Authorization' : 'Bearer ' + accesstoken
     };
-    console.log(MCHeaders);
+    console.log('Row data From Inarguments'+JSON.stringify(rowData));
     performPostRequest(MCEndpoint,MCHost,MCHeaders, method, rowData, function(data) {
       console.log(data);
     });
@@ -196,17 +197,18 @@ exports.execute = function (req, res) {
           
             console.log("Email from inArgument : " + decoded.inArguments[0].Email);
             console.log("Contactkey from inArgument  : " + decoded.inArguments[0].ContactKey);
-            /*
+            
+            
             rowData = [{
               "keys":{
-                  "ContactKey":"{{decoded.inArguments[0].Email}}"
+                  "ContactKey":decoded.inArguments[0].ContactKey
                       },
               "values":{
-                  "Email":"abc@gmail.com"
+                  "Email":decoded.inArguments[0].Email
                       }
              
                     }]; 
-                   */
+                   
 
             res.send(200, 'Execute');
         } else {
