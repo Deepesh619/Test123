@@ -130,6 +130,26 @@ var MCEndpoint = '';
           }
  
         }]; */
+
+        //Deepesh
+        var eventDefinitionKey;
+        connection.trigger('requestTriggerEventDefinition');
+        
+        connection.on('requestedTriggerEventDefinition',
+        function(eventDefinitionModel) {
+            if(eventDefinitionModel){
+        
+                eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+                console.log(">>>Event Definition Key " + eventDefinitionKey);
+                /*If you want to see all*/
+                console.log('>>>Request Trigger', 
+                JSON.stringify(eventDefinitionModel));
+            }
+        
+        });
+
+
+
   
 var method="POST";
 
@@ -180,6 +200,12 @@ exports.execute = function (req, res) {
   
      // console.log('This is start of execution- : '+req);
     
+     //Deepesh
+     payload['arguments'].execute.inArguments = [{
+      "Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}"
+      }];
+
+      console.log('parameterss- '+payload);
     
       JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
@@ -193,7 +219,11 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
-            
+          
+            console.log("Email : " + decoded.inArguments[0].Email);
+           
+
+            /*
              rowData = [{
               "keys":{
                   "ContactKey":"4321"
@@ -203,8 +233,8 @@ exports.execute = function (req, res) {
                       }
              
                     }]; 
-                    console.log("Email : " + decoded.inArguments[0].DEname +'Email');
-
+                   
+*/
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');

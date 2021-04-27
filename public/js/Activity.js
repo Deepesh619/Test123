@@ -33,7 +33,7 @@ connection.on('initActivity',function(data){
 }); 
 
 //to check the DE data we need evendefid
-var eventDefinitionKey;
+ /*var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
 
 connection.on('requestedTriggerEventDefinition',
@@ -42,19 +42,20 @@ function(eventDefinitionModel) {
 
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
         console.log(">>>Event Definition Key " + eventDefinitionKey);
-        /*If you want to see all*/
+        //If you want to see all
         console.log('>>>Request Trigger', 
         JSON.stringify(eventDefinitionModel));
     }
 
-});
+}); */
 
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
     console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        "Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
+        "Email": "abc@gmail.com",
+        //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];
