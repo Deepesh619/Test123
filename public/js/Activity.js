@@ -41,6 +41,8 @@ connection.on('clickedNext',function(){
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];
+
+    console.log('Param- '+payload['arguments']);
    
     payload['arguments'].execute.useJwt = true;
     payload['configurationArguments'].save.useJwt = true;
