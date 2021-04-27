@@ -23,6 +23,7 @@ var payload = [
     var connection = new Postmonger.Session();
 
 connection.trigger('ready');
+connection.trigger('requestTokens');
 connection.on('requestedTokens', onGetTokens);
 connection.on('initActivity',function(data){
     console.log(data);
