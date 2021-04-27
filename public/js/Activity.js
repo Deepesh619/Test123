@@ -33,12 +33,14 @@ connection.on('initActivity',function(data){
 }); 
 
 //to check the DE data we need evendefid
+
 //Deepesh
- /*var eventDefinitionKey;
+ var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
 
 connection.on('requestedTriggerEventDefinition',
 function(eventDefinitionModel) {
+console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
     if(eventDefinitionModel){
 
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
@@ -48,16 +50,16 @@ function(eventDefinitionModel) {
         JSON.stringify(eventDefinitionModel));
     }
 
-}); */
-var eventDefinitionKey;
-connection.on("requestedTriggerEventDefinition", function (
-    eventDefinitionModel
-  ) {
-    if (eventDefinitionModel) {
-      definition = eventDefinitionModel;
-      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-    }
-  });
+}); 
+
+
+connection.trigger('requestInteraction');
+
+connection.on('requestedInteraction', function(settings){
+    console.log('EVENT definition from req Interaction Event- '+JSON.stringify(settings));
+    eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
+
+});
 
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
