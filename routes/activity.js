@@ -121,7 +121,7 @@ var accesstoken=null;
   
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
-/* var rowData = [{
+ var rowData = [{
   "keys":{
       "ContactKey": "1234"
           },
@@ -129,26 +129,7 @@ var MCEndpoint = '';
       "Email":"akhil.passi122@accenture.com"
           }
  
-        }]; */
-
-        //Deepesh
-        var eventDefinitionKey;
-        connection.trigger('requestTriggerEventDefinition');
-        
-        connection.on('requestedTriggerEventDefinition',
-        function(eventDefinitionModel) {
-            if(eventDefinitionModel){
-        
-                eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-                console.log(">>>Event Definition Key " + eventDefinitionKey);
-                /*If you want to see all*/
-                console.log('>>>Request Trigger', 
-                JSON.stringify(eventDefinitionModel));
-            }
-        
-        });
-
-
+        }]; 
 
   
 var method="POST";
@@ -199,14 +180,7 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
 exports.execute = function (req, res) {
   
      // console.log('This is start of execution- : '+req);
-    
-     //Deepesh
-     payload['arguments'].execute.inArguments = [{
-      "Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}"
-      }];
-
-      console.log('parameterss- '+payload);
-    
+  
       JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
@@ -221,7 +195,6 @@ exports.execute = function (req, res) {
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
           
             console.log("Email : " + decoded.inArguments[0].Email);
-           
 
             /*
              rowData = [{

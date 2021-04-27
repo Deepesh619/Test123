@@ -33,7 +33,8 @@ connection.on('initActivity',function(data){
 }); 
 
 //to check the DE data we need evendefid
- /*var eventDefinitionKey;
+//Deepesh
+ var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
 
 connection.on('requestedTriggerEventDefinition',
@@ -47,7 +48,7 @@ function(eventDefinitionModel) {
         JSON.stringify(eventDefinitionModel));
     }
 
-}); */
+}); 
 
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
