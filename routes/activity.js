@@ -122,7 +122,7 @@ var accesstoken=null;
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
  
-var rowData = [{
+ /* var rowData = [{
   "keys":{
       "ContactKey": "4567"
           },
@@ -130,7 +130,7 @@ var rowData = [{
       "Email":"akhil.passi122@accenture.com"
           }
  
-        }]; 
+        }]; */
 
   
 var method="POST";
@@ -165,7 +165,7 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
   }
 
 
-  function insertRecordsIntoDE(){
+  function insertRecordsIntoDE(rowData,accesstoken){
     //var authuri = 'Bearer ' + accesstoken;
     //console.log(authuri);
     var MCHeaders = {
@@ -178,7 +178,12 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
     });
   }
 
+  
+
 exports.execute = function (req, res) {
+
+  var rowData=[];
+  var accesstoken=null;
   
      // console.log('This is start of execution- : '+req);
   
@@ -199,7 +204,7 @@ exports.execute = function (req, res) {
             console.log("Contactkey from inArgument 0 : " + decoded.inArguments[0].ContactKey);
             
             
-            rowData = [{
+           var rowData = [{
               "keys":{
                   "ContactKey":decoded.inArguments[0].ContactKey
                       },
@@ -222,7 +227,7 @@ exports.execute = function (req, res) {
      performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
         accesstoken = data.access_token;
         console.log('Access token is: ', accesstoken);
-        insertRecordsIntoDE();
+        insertRecordsIntoDE(rowData,accesstoken);
       });
      res.send(200, 'Execute'); 
 
