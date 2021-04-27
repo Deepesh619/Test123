@@ -64,8 +64,10 @@ connection.on('clickedNext',function(){
     console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        "srcCloumnName1" : "{{Event."+ eventDefinitionKey +"."+srcCloumnName1+"}}",
-        "srcCloumnName2": "{{Event."+ eventDefinitionKey +"."+srcCloumnName2+"}}",
+        "srcCloumnValue1" : "{{Event."+ eventDefinitionKey +"."+srcCloumnName1+"}}",
+        "srcCloumnValue2": "{{Event."+ eventDefinitionKey +"."+srcCloumnName2+"}}",
+        "srcCloumnName1" : srcCloumnName1,
+        "srcCloumnName2" : srcCloumnName2,
         "DEName" : DEName,
         "pkDestCloumnName1" : pkDestCloumnName1,
         "destCloumnName2" : destCloumnName2

@@ -154,16 +154,16 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;          
-            console.log("Src Col2 from inArgument : " + decoded.inArguments[0].srcCloumnName2);
-            console.log("Src Col1 from inArgument : " + decoded.inArguments[0].srcCloumnName1);
+            console.log("Value of Src Col1 from inArgument : " + decoded.inArguments[0].srcCloumnValue1);
+            console.log("Value of Src Col2 from inArgument : " + decoded.inArguments[0].srcCloumnValue2);
             console.log("Dest Col1 from inArgument : " + decoded.inArguments[0].pkDestCloumnName1);
             console.log("Dest Col2 from inArgument : " + decoded.inArguments[0].destCloumnName2);
             rowData = [{
               "keys":{
-                [decoded.inArguments[0].pkDestCloumnName1]:decoded.inArguments[0].srcCloumnName1
+                [decoded.inArguments[0].pkDestCloumnName1]:decoded.inArguments[0].srcCloumnValue1
                       },
               "values":{
-                [decoded.inArguments[0].destCloumnName2]:decoded.inArguments[0].srcCloumnName2
+                [decoded.inArguments[0].destCloumnName2]:decoded.inArguments[0].srcCloumnValue2
                       }
              
                     }]; 
