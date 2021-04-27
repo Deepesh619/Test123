@@ -34,7 +34,7 @@ connection.on('initActivity',function(data){
 
 //to check the DE data we need evendefid
 //Deepesh
- var eventDefinitionKey;
+ /*var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
 
 connection.on('requestedTriggerEventDefinition',
@@ -48,7 +48,7 @@ function(eventDefinitionModel) {
         JSON.stringify(eventDefinitionModel));
     }
 
-}); 
+}); */
 
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
@@ -56,9 +56,12 @@ connection.on('clickedNext',function(){
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
         //"Email": "abc@gmail.com",
-        "Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
+        "Email": "{{Contact.Default.Email}}",
+        //"Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
+        "ContactKey" : "{{Contact.Attribute.CustomActivityTest.ContactKey}}",
         //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
-        "ContactKey" : "12345678",
+        //"ContactKey" : "12345678",
+       // {{Event.DEAudience-3ab446ce-0427-deea-6871-033f3327ef9c.ProductId}}
        "DEName" : DEName
     }];
    

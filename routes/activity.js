@@ -123,7 +123,7 @@ var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
  var rowData = [{
   "keys":{
-      "ContactKey": "7890"
+      "ContactKey": "4567"
           },
   "values":{
       "Email":"akhil.passi122@accenture.com"
