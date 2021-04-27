@@ -68,37 +68,7 @@ exports.edit = function (req, res) {
  */
 exports.save = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log('JWT secret- '+process.env.jwtSecret);
-    //console.log('Param- :'+JSON.stringify(req,null,2))
-   // const str = CircularJSON.stringify(req);
-    //JSON.parse(str)
-
-   /* JWT(req.body, process.env.jwtSecret, (err, decoded) => {
-
-      // verification error -> unauthorized request
-      if (err) {
-          console.error(err);
-          return res.status(401).end();
-      }
-
-      if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
-          
-          // decoded in arguments
-          var decodedArgs = decoded.inArguments[0];
-          console.log('Start- ');
-          logData(req);
-          console.log('End- ');
-          res.send(200, 'Save');
-      } else {
-          console.error('inArguments invalid.');
-          return res.status(400).end();
-      }
-  }); */
-
     res.send(200, 'Save');
-
-
 };
 
 /*
@@ -121,17 +91,6 @@ var accesstoken=null;
   
 var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
- 
- /* var rowData = [{
-  "keys":{
-      "ContactKey": "4567"
-          },
-  "values":{
-      "Email":"akhil.passi122@accenture.com"
-          }
- 
-        }]; */
-
   
 var method="POST";
 
@@ -166,8 +125,6 @@ function  performPostRequest(endpoint,host,headers, method, data, success) {
 
 
   function insertRecordsIntoDE(rowData,accesstoken){
-    //var authuri = 'Bearer ' + accesstoken;
-    //console.log(authuri);
     var MCHeaders = {
       'Content-Type': 'application/json',
       'Authorization' : 'Bearer ' + accesstoken
@@ -185,8 +142,6 @@ exports.execute = function (req, res) {
   var rowData=[];
   var accesstoken=null;
   
-     // console.log('This is start of execution- : '+req);
-  
       JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
@@ -198,18 +153,17 @@ exports.execute = function (req, res) {
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
             // decoded in arguments
-            MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
-          
-            console.log("Email from inArgument : " + decoded.inArguments[0].Email);
-            console.log("Contactkey from inArgument 0 : " + decoded.inArguments[0].ContactKey);
-            
-            
+            MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;          
+            console.log("Src Col2 from inArgument : " + decoded.inArguments[0].srcCloumnName2);
+            console.log("Src Col1 from inArgument : " + decoded.inArguments[0].srcCloumnName1);
+            console.log("Dest Col1 from inArgument : " + decoded.inArguments[0].pkDestCloumnName1);
+            console.log("Dest Col2 from inArgument : " + decoded.inArguments[0].destCloumnName2);
             rowData = [{
               "keys":{
-                  "ContactKey":decoded.inArguments[0].ContactKey
+                [decoded.inArguments[0].pkDestCloumnName1]:decoded.inArguments[0].srcCloumnName1
                       },
               "values":{
-                  "Email":decoded.inArguments[0].Email
+                [decoded.inArguments[0].destCloumnName2]:decoded.inArguments[0].srcCloumnName2
                       }
              
                     }]; 
