@@ -74,7 +74,8 @@ connection.on('clickedNext',function(){
     payload['metaData'].isConfigured = true;
     payload['key'] = 'REST-1';
     payload['type'] = 'REST';
-    console.log('Total PAyload: - '+payload);
+    console.log('Total PAyload: - '+JSON.stringify(payload));
+    console.log('inArgument for Contact key is - '+payload['arguments'].execute.inArguments[0].ContactKey);
     connection.trigger('updateActivity', payload);
 });
 
