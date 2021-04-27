@@ -56,7 +56,8 @@ connection.on('clickedNext',function(){
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
         //"Email": "abc@gmail.com",
-        "Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
+        "Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
+        //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];
@@ -83,7 +84,7 @@ function insertDE() {
 
     app.get('/connecttoMCData', function(request, responsefromWeb) {
 	
-        axios({
+        axios({;
             method: 'post',
             url: 'https://www.exacttargetapis.com/hub/v1/dataevents/key:CustomActivityTest/rowset',
             data: payload,
