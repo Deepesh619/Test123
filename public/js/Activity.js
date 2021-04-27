@@ -37,7 +37,7 @@ connection.on('clickedNext',function(){
     console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        "Email":"{{Event.DEname.FirstName}}",
+        "Email":"{{Event.DEname.Email}}",
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];
