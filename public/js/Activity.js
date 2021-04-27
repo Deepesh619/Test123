@@ -55,8 +55,8 @@ connection.on('clickedNext',function(){
     console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        "Email": "abc@gmail.com",
-        //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
+        //"Email": "abc@gmail.com",
+        "Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];

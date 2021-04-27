@@ -123,7 +123,7 @@ var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
 var MCEndpoint = '';
  var rowData = [{
   "keys":{
-      "ContactKey": "1234"
+      "ContactKey": "7890"
           },
   "values":{
       "Email":"akhil.passi122@accenture.com"
@@ -197,17 +197,17 @@ exports.execute = function (req, res) {
             console.log("Email : " + decoded.inArguments[0].Email);
 
             /*
-             rowData = [{
+            rowData = [{
               "keys":{
-                  "ContactKey":"4321"
+                  "ContactKey":"{{decoded.inArguments[0].Email}}"
                       },
               "values":{
                   "Email":"abc@gmail.com"
                       }
              
                     }]; 
-                   
-*/
+                   */
+
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
