@@ -12,6 +12,7 @@ var http = require('https');
 var querystring = require('querystring');
 const { Console } = require('console');
 exports.logExecuteData = [];
+var rowData= [];
 
 function logData(req) {
     exports.logExecuteData.push({
@@ -193,7 +194,7 @@ exports.execute = function (req, res) {
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
             
-            var rowData = [{
+             rowData = [{
               "keys":{
                   "ContactKey":"4321"
                       },
@@ -202,7 +203,7 @@ exports.execute = function (req, res) {
                       }
              
                     }]; 
-                    console.log("Email : " + decoded.inArguments[0].Email);
+                    console.log("Email : " + decoded.inArguments[0].DEname +'Email');
 
             res.send(200, 'Execute');
         } else {
