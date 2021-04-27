@@ -210,7 +210,7 @@ exports.execute = function (req, res) {
                     }]; 
                    
 
-            res.send(200, 'Execute');
+            //res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
@@ -224,7 +224,7 @@ exports.execute = function (req, res) {
         console.log('Access token is: ', accesstoken);
         insertRecordsIntoDE();
       });
-    // res.send(200, 'Execute'); 
+     res.send(200, 'Execute'); 
 
     // example on how to decode JWT
      
