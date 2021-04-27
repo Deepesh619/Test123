@@ -39,9 +39,11 @@ connection.on('clickedNext',function(){
         "tokens": authTokens,
         "Email":"{{Event.DEname.Email}}",
         "ContactKey" : "12345678",
-       "DEName" : DEName
+       "DEName" : 
+       console.log('Email is :'+Email)
+       
     }];
-    console.log('Email is :'+Email);
+   
     payload['arguments'].execute.useJwt = true;
     payload['configurationArguments'].save.useJwt = true;
     payload['metaData'].isConfigured = true;
