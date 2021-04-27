@@ -49,7 +49,7 @@ function(eventDefinitionModel) {
     }
 
 }); */
-
+var eventDefinitionKey;
 connection.on("requestedTriggerEventDefinition", function (
     eventDefinitionModel
   ) {
