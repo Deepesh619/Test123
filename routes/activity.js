@@ -202,7 +202,7 @@ exports.execute = function (req, res) {
                       }
              
                     }]; 
-                    console.log("ContactKey : " + decoded.inArguments[0].Email);
+                    console.log("Email : " + decoded.inArguments[0].Email);
 
             res.send(200, 'Execute');
         } else {

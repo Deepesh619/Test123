@@ -32,12 +32,29 @@ connection.on('initActivity',function(data){
     document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
 }); 
 
+//to check the DE data we need evendefid
+var eventDefinitionKey;
+connection.trigger('requestTriggerEventDefinition');
+
+connection.on('requestedTriggerEventDefinition',
+function(eventDefinitionModel) {
+    if(eventDefinitionModel){
+
+        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+        console.log(">>>Event Definition Key " + eventDefinitionKey);
+        /*If you want to see all*/
+        console.log('>>>Request Trigger', 
+        JSON.stringify(eventDefinitionModel));
+    }
+
+});
+
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
     console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        "Email":"{{Event.DEname.Email}}",
+        "Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];
