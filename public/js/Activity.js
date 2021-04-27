@@ -39,9 +39,7 @@ connection.on('clickedNext',function(){
         "tokens": authTokens,
         "Email":"{{Event.DEname.Email}}",
         "ContactKey" : "12345678",
-       "DEName" : 
-       console.log('Email is :'+Email)
-       
+       "DEName" : DEName
     }];
    
     payload['arguments'].execute.useJwt = true;
