@@ -37,10 +37,11 @@ connection.on('clickedNext',function(){
     console.log('DEName is : '+ DEName);
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
-        "Email": "akhil.passi444@accenture.com",
+        "Email":"{{Event.DEname.FirstName}}",
         "ContactKey" : "12345678",
        "DEName" : DEName
     }];
+    console.log('Email is :'+Email);
     payload['arguments'].execute.useJwt = true;
     payload['configurationArguments'].save.useJwt = true;
     payload['metaData'].isConfigured = true;

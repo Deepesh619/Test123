@@ -192,6 +192,18 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
+
+           /* var rowData = [{
+              "keys":{
+                  "ContactKey": ""
+                      },
+              "values":{
+                  "Email":""
+                      }
+             
+                    }]; */
+
+
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
