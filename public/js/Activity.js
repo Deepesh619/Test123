@@ -53,14 +53,6 @@ console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefi
 }); 
 
 
-connection.trigger('requestInteraction');
-
-connection.on('requestedInteraction', function(settings){
-    console.log('EVENT definition from req Interaction Event- '+JSON.stringify(settings));
-    eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
-
-});
-
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
     console.log('DEName is : '+ DEName);
@@ -82,7 +74,7 @@ connection.on('clickedNext',function(){
     payload['metaData'].isConfigured = true;
     payload['key'] = 'REST-1';
     payload['type'] = 'REST';
-    console.log(payload);
+    console.log('Total PAyload: - '+payload);
     connection.trigger('updateActivity', payload);
 });
 
