@@ -204,7 +204,7 @@ exports.execute = function (req, res) {
             console.log("Contactkey from inArgument 0 : " + decoded.inArguments[0].ContactKey);
             
             
-           var rowData = [{
+            rowData = [{
               "keys":{
                   "ContactKey":decoded.inArguments[0].ContactKey
                       },
