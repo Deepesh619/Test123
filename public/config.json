@@ -6,7 +6,7 @@
   },
   "key":"REST-1",
   "type": "REST",
-  "eventDefinitionKey":"1234",
+ 
   "lang": {
       "en-US": {
           "name": "Custom Activity (Workflow API v1.1)",

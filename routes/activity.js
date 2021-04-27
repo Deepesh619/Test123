@@ -195,7 +195,7 @@ exports.execute = function (req, res) {
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
           
             console.log("Email : " + decoded.inArguments[0].Email);
-            console.log("Email : " + decoded.inArguments[0].ContactKey);
+            console.log("Contactkey : " + decoded.inArguments[0].ContactKey);
             /*
             rowData = [{
               "keys":{

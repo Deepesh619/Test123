@@ -50,6 +50,15 @@ function(eventDefinitionModel) {
 
 }); */
 
+connection.on("requestedTriggerEventDefinition", function (
+    eventDefinitionModel
+  ) {
+    if (eventDefinitionModel) {
+      definition = eventDefinitionModel;
+      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+    }
+  });
+
 connection.on('clickedNext',function(){
     var DEName = document.getElementById('DEName').value;
     console.log('DEName is : '+ DEName);
@@ -60,8 +69,9 @@ connection.on('clickedNext',function(){
         //"Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
         "ContactKey" : "{{Contact.Attribute.CustomActivityTest.ContactKey}}",
         //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
+        "Email": "{{Event."+ eventDefinitionKey +".Email}}",
         //"ContactKey" : "12345678",
-        "Email":"{{Event.1234.Email}}",
+        //"Email":"{{Event.1234.Email}}",
        "DEName" : DEName
     }];
    
