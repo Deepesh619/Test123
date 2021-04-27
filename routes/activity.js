@@ -197,7 +197,7 @@ exports.execute = function (req, res) {
           
             console.log("Email from inArgument : " + decoded.inArguments[0].Email);
             console.log("Contactkey from inArgument 0 : " + decoded.inArguments[0].ContactKey);
-            console.log("Contactkey from inArgument 1 : " + decoded.inArguments[1].ContactKey);
+            
             
             rowData = [{
               "keys":{
