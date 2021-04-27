@@ -193,7 +193,7 @@ exports.execute = function (req, res) {
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;
             
-             rowData = [{
+            var rowData = [{
               "keys":{
                   "ContactKey":"4321"
                       },
