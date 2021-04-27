@@ -56,8 +56,8 @@ connection.on('clickedNext',function(){
     payload['arguments'].execute.inArguments = [{
         "tokens": authTokens,
         //"Email": "abc@gmail.com",
-        "Email": "{{Contact.Default.Email}}",
-        //"Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
+        //"Email": "{{Contact.Default.Email}}",
+        "Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
         "ContactKey" : "{{Contact.Attribute.CustomActivityTest.ContactKey}}",
         //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         //"ContactKey" : "12345678",
