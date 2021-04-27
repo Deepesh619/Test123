@@ -61,7 +61,7 @@ connection.on('clickedNext',function(){
         //"Email": "abc@gmail.com",
         //"Email": "{{Contact.Default.Email}}",
         //"Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
-        "ContactKey" : "{{Contact.Attribute.CustomActivityTest.ContactKey}}",
+        "ContactKey" : "{{Event."+ eventDefinitionKey +".ContactKey}}",
         //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         "Email": "{{Event."+ eventDefinitionKey +".Email}}",
         //"ContactKey" : "12345678",
