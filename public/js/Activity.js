@@ -57,11 +57,11 @@ connection.on('clickedNext',function(){
         "tokens": authTokens,
         //"Email": "abc@gmail.com",
         //"Email": "{{Contact.Default.Email}}",
-        "Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
+        //"Email": "{{Contact.Attribute.CustomActivityTest.Email}}",
         "ContactKey" : "{{Contact.Attribute.CustomActivityTest.ContactKey}}",
         //"Email": "{{Contact.Attribute." + eventDefinitionKey +".\"Email\"}}",
         //"ContactKey" : "12345678",
-       // {{Event.DEAudience-3ab446ce-0427-deea-6871-033f3327ef9c.ProductId}}
+        "Email":"{{Event.1234.Email}}",
        "DEName" : DEName
     }];
    
