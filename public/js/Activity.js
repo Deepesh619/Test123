@@ -1,11 +1,14 @@
 
-    var payload = {};
-    var connection = new Postmonger.Session();
+    //var payload = {};
+    //var connection = new Postmonger.Session();
 
 //Deepesh
-//var Postmonger = require('postmonger');
-
 'use strict';
+define(function (require) {
+	var Postmonger = require('postmonger');
+	var connection = new Postmonger.Session();
+    var payload = {};
+
 var steps = [
     {'key': 'nextbutton', 'label': 'Next'},
     {'key': 'mapping', 'label': 'Mapping'}
@@ -62,10 +65,12 @@ function showStep (step, stepIndex) {
         break;
     }
 }
+});
 
 
 
 //Deepesh end
+/*
 connection.trigger('ready');
 connection.on('initActivity',function(data){
     console.log(data);
@@ -120,4 +125,4 @@ connection.on('clickedNext',function(){
    // console.log('Total PAyload: - '+JSON.stringify(payload));
     connection.trigger('updateActivity', payload);
 });
-
+*/
