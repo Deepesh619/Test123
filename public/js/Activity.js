@@ -18,7 +18,7 @@ connection.on('initActivity',function(data){
    var pkColumnNumberData =  payload['arguments'].execute.inArguments[0].pkColumnNumber;
    var columnNumberData =  payload['arguments'].execute.inArguments[0].columnNumber;
    var test =  payload['arguments'].execute.inArguments[0]['pkSrcCloumnName'+'1'];
-   console.log('pkSrcCloumnName1 isss : ' + test);
+   console.log('pkSrcCloumnName1 is : ' + test);
    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
    document.getElementById('pkColumnNumber').value= pkColumnNumberData;
    document.getElementById('columnNumber').value= columnNumberData;
@@ -95,7 +95,7 @@ function createrows(){
     cell2.appendChild(element1);
     var cell3 = row.insertCell(2);
     var element2 = document.createElement("textarea");
-    element2.id="DestCloumnName"+i;
+    element2.id="destCloumnName"+i;
     cell3.appendChild(element2);
     }
 }
