@@ -1,13 +1,3 @@
-
-    //var payload = {};
-    //var connection = new Postmonger.Session();
-
-//Deepesh
-//'use strict';
-//define('module',function (require) {
-	//var Postmonger = require('postmonger');
-	
-   //Akhil
    var payload = {};
    var connection = new Postmonger.Session();
    var steps = [
@@ -16,8 +6,8 @@
 ];
 
 var currentStep = steps[0].key;
-
-
+var pkcolumnNumber = 0;
+var columnNumber = 0;
 
 connection.trigger('ready');
 connection.on('initActivity',function(data){
@@ -26,38 +16,25 @@ connection.on('initActivity',function(data){
        payload = data;
    }
    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
-   document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
-   document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
-   document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
-   document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
+  // document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
+  // document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
+  // document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
+  // document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
 }); 
 var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
-
-
 
 connection.on('requestedTriggerEventDefinition',
 function(eventDefinitionModel) {
 //console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
    if(eventDefinitionModel){
      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-     //  console.log(">>>Event Definition Key " + eventDefinitionKey);
-       //If you want to see all
-       //console.log('>>>Request Trigger', 
-       //JSON.stringify(eventDefinitionModel));
    }
-
-
-
 }); 
-
-
-
 
 connection.on('clickedNext',onClickedNext);
 connection.on('clickedBack', onClickedBack);
 connection.on('gotoStep', onGotoStep);
-
 
 
 function onClickedNext () {
@@ -66,11 +43,29 @@ function onClickedNext () {
        save();
    } else {
     console.log('Is it in else part: ');
+    createrows();
        connection.trigger('nextStep');
    }
 }
 
-
+function createrows(){
+    pkcolumnNumber = parseInt(document.getElementById('pkColumnNumber').value);
+    columnNumber = parseInt(document.getElementById('columnNumber').value);
+    var table = document.getElementById('pkColumnTable');
+    for (var i=1;i<=pkcolumnNumber;i++){
+    var row = table.insertRow(i);
+    var cell1 = row.insertCell(0);
+    cell1.innerHTML="Column "+i+"(Destination should be Primary Key Column)";
+    var cell2 = row.insertCell(1);
+    var element1 = document.createElement("textarea");
+    element1.id="srcCloumnName"+i;
+    cell2.appendChild(element1);
+    var cell3 = row.insertCell(2);
+    var element2 = document.createElement("textarea");
+    element2.id="pkDestCloumnName"+i;
+    cell3.appendChild(element2);
+    }
+}
 
 function onClickedBack () {
    connection.trigger('prevStep');
@@ -110,21 +105,14 @@ function showStep (step, stepIndex) {
 function save () {
     var DEName = document.getElementById('DEName').value;
     console.log('DEName: '+DEName);
-   var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
-   var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
-   var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
-   var destCloumnName2 = document.getElementById('destCloumnName2').value;
+  // var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
+  // var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
+  // var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
+  // var destCloumnName2 = document.getElementById('destCloumnName2').value;
    console.log('DEName is : '+ DEName);
-   payload['arguments'].execute.inArguments = [{
-       "srcCloumnValue1" : "{{Event."+ eventDefinitionKey +"."+srcCloumnName1+"}}",
-       "srcCloumnValue2": "{{Event."+ eventDefinitionKey +"."+srcCloumnName2+"}}",
-       "srcCloumnName1" : srcCloumnName1,
-       "srcCloumnName2" : srcCloumnName2,
-       "DEName" : DEName,
-       "pkDestCloumnName1" : pkDestCloumnName1,
-       "destCloumnName2" : destCloumnName2
-   }];
-  
+   payload['arguments'].execute.inArguments = [{ 
+        "DEName" : DEName
+    }];  
    payload['arguments'].execute.useJwt = true;
    payload['configurationArguments'].save.useJwt = true;
    payload['metaData'].isConfigured = true;
@@ -133,201 +121,5 @@ function save () {
   // console.log('Total PAyload: - '+JSON.stringify(payload));
    connection.trigger('updateActivity', payload);
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    var connection = new Postmonger.Session();
-    var payload = {};
-
-    var eventDefinitionKey;
-connection.trigger('requestTriggerEventDefinition');
-
-connection.on('requestedTriggerEventDefinition',
-function(eventDefinitionModel) {
-//console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
-    if(eventDefinitionModel){
-      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-      //  console.log(">>>Event Definition Key " + eventDefinitionKey);
-        //If you want to see all
-        //console.log('>>>Request Trigger', 
-        //JSON.stringify(eventDefinitionModel));
-    }
-
-}); 
-
-    
-var steps = [
-    {'key': 'dekey', 'label': 'Select Data Extension key'},
-    {'key': 'DEmapping', 'label': 'Mapping'}
-];
-
-var currentStep = steps[0].key;
-//var eventDefinitionKey = '';
-var deFields = [];
-
-$(window).ready(function () {
-    connection.trigger('ready');
-    connection.trigger('requestInteraction');
-}); 
-
-function initialize (data) {
-    if (data) {
-        payload = data;
-    }
-}
-
-function onClickedNext () {
-    if (currentStep.key === 'mapping') {
-
-        var DEmapping = document.getElementById('DEmapping').value;
-        var DEName = document.getElementById('DEName').value;
-        var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
-        var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
-        var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
-        var destCloumnName2 = document.getElementById('destCloumnName2').value;
-        console.log('DEName is : '+ DEName);
-        payload['arguments'].execute.inArguments = [{
-            "srcCloumnValue1" : "{{Event."+ eventDefinitionKey +"."+srcCloumnName1+"}}",
-            "srcCloumnValue2": "{{Event."+ eventDefinitionKey +"."+srcCloumnName2+"}}",
-            "srcCloumnName1" : srcCloumnName1,
-            "srcCloumnName2" : srcCloumnName2,
-            "DEName" : DEName,
-            "pkDestCloumnName1" : pkDestCloumnName1,
-            "destCloumnName2" : destCloumnName2,
-            "DEmapping": DEmapping
-        }];
-       
-        payload['arguments'].execute.useJwt = true;
-        payload['configurationArguments'].save.useJwt = true;
-        payload['metaData'].isConfigured = true;
-        payload['key'] = 'REST-1';
-        payload['type'] = 'REST';
-       // console.log('Total PAyload: - '+JSON.stringify(payload));
-        connection.trigger('updateActivity', payload);
-
-        save();
-
-    } else {
-        connection.trigger('nextStep');
-    }
-}
-
-function onClickedBack () {
-    connection.trigger('prevStep');
-}
-
-function onGotoStep (step) {
-    showStep(step);
-    connection.trigger('ready');
-}
-
-function showStep (step, stepIndex) {
-    if (stepIndex && !step) {
-        step = steps[stepIndex - 1];
-    }
-
-    currentStep = step;
-
-    $('.step').hide();
-
-    switch (currentStep.key) {
-    case 'dekey':
-        $('#step1').show();
-        $('#step1 input').focus();
-        break;
-    case 'DEmapping':
-        $('#step2').show();
-        $('#step2 input').focus();
-        break;
-    }
-}
-
-
-//Deepesh end
-
-connection.trigger('ready');
-connection.on('initActivity',function(data){
-    console.log(data);
-    if (data) {
-        payload = data;
-    }
-    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
-    document.getElementById('DEmapping').value= payload['arguments'].execute.inArguments[0].DEmapping;
-    document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
-    document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
-    document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
-    document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
-}); 
-var eventDefinitionKey;
-connection.trigger('requestTriggerEventDefinition');
-
- /* connection.on('requestedTriggerEventDefinition',
-function(eventDefinitionModel) {
-//console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
-    if(eventDefinitionModel){
-      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-      //  console.log(">>>Event Definition Key " + eventDefinitionKey);
-        //If you want to see all
-        //console.log('>>>Request Trigger', 
-        //JSON.stringify(eventDefinitionModel));
-    }
-
-}); 
-
-
- connection.on('clickedNext',function(){
-    var DEmapping = document.getElementById('DEmapping').value;
-    var DEName = document.getElementById('DEName').value;
-    var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
-    var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
-    var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
-    var destCloumnName2 = document.getElementById('destCloumnName2').value;
-    console.log('DEName is : '+ DEName);
-    payload['arguments'].execute.inArguments = [{
-        "srcCloumnValue1" : "{{Event."+ eventDefinitionKey +"."+srcCloumnName1+"}}",
-        "srcCloumnValue2": "{{Event."+ eventDefinitionKey +"."+srcCloumnName2+"}}",
-        "srcCloumnName1" : srcCloumnName1,
-        "srcCloumnName2" : srcCloumnName2,
-        "DEName" : DEName,
-        "pkDestCloumnName1" : pkDestCloumnName1,
-        "destCloumnName2" : destCloumnName2,
-        "DEmapping": DEmapping
-    }];
-   
-    payload['arguments'].execute.useJwt = true;
-    payload['configurationArguments'].save.useJwt = true;
-    payload['metaData'].isConfigured = true;
-    payload['key'] = 'REST-1';
-    payload['type'] = 'REST';
-   // console.log('Total PAyload: - '+JSON.stringify(payload));
-    connection.trigger('updateActivity', payload);
-}); */
-
-
-//deepesh
-/*
-connection.on('initActivity', initialize);
-	connection.on('clickedNext', onClickedNext);
-	connection.on('clickedBack', onClickedBack);
-	connection.on('gotoStep', onGotoStep);
-	
-    connection.trigger('updateActivity', payload);
-    
-*/
- // });
 
 
