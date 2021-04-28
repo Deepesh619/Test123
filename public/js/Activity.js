@@ -9,14 +9,30 @@
 	var connection = new Postmonger.Session();
     var payload = {};
 
-    /*
+    var eventDefinitionKey;
+connection.trigger('requestTriggerEventDefinition');
+
+connection.on('requestedTriggerEventDefinition',
+function(eventDefinitionModel) {
+//console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
+    if(eventDefinitionModel){
+      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+      //  console.log(">>>Event Definition Key " + eventDefinitionKey);
+        //If you want to see all
+        //console.log('>>>Request Trigger', 
+        //JSON.stringify(eventDefinitionModel));
+    }
+
+}); 
+
+    
 var steps = [
     {'key': 'dekey', 'label': 'Select Data Extension key'},
     {'key': 'DEmapping', 'label': 'Mapping'}
 ];
 
 var currentStep = steps[0].key;
-var eventDefinitionKey = '';
+//var eventDefinitionKey = '';
 var deFields = [];
 
 $(window).ready(function () {
@@ -32,7 +48,35 @@ function initialize (data) {
 
 function onClickedNext () {
     if (currentStep.key === 'mapping') {
+
+        var DEmapping = document.getElementById('DEmapping').value;
+        var DEName = document.getElementById('DEName').value;
+        var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
+        var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
+        var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
+        var destCloumnName2 = document.getElementById('destCloumnName2').value;
+        console.log('DEName is : '+ DEName);
+        payload['arguments'].execute.inArguments = [{
+            "srcCloumnValue1" : "{{Event."+ eventDefinitionKey +"."+srcCloumnName1+"}}",
+            "srcCloumnValue2": "{{Event."+ eventDefinitionKey +"."+srcCloumnName2+"}}",
+            "srcCloumnName1" : srcCloumnName1,
+            "srcCloumnName2" : srcCloumnName2,
+            "DEName" : DEName,
+            "pkDestCloumnName1" : pkDestCloumnName1,
+            "destCloumnName2" : destCloumnName2,
+            "DEmapping": DEmapping
+        }];
+       
+        payload['arguments'].execute.useJwt = true;
+        payload['configurationArguments'].save.useJwt = true;
+        payload['metaData'].isConfigured = true;
+        payload['key'] = 'REST-1';
+        payload['type'] = 'REST';
+       // console.log('Total PAyload: - '+JSON.stringify(payload));
+        connection.trigger('updateActivity', payload);
+
         save();
+        
     } else {
         connection.trigger('nextStep');
     }
@@ -67,7 +111,7 @@ function showStep (step, stepIndex) {
         break;
     }
 }
-*/
+
 
 //Deepesh end
 
@@ -87,7 +131,7 @@ connection.on('initActivity',function(data){
 var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
 
-connection.on('requestedTriggerEventDefinition',
+ /* connection.on('requestedTriggerEventDefinition',
 function(eventDefinitionModel) {
 //console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
     if(eventDefinitionModel){
@@ -101,7 +145,7 @@ function(eventDefinitionModel) {
 }); 
 
 
-connection.on('clickedNext',function(){
+ connection.on('clickedNext',function(){
     var DEmapping = document.getElementById('DEmapping').value;
     var DEName = document.getElementById('DEName').value;
     var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
@@ -127,19 +171,19 @@ connection.on('clickedNext',function(){
     payload['type'] = 'REST';
    // console.log('Total PAyload: - '+JSON.stringify(payload));
     connection.trigger('updateActivity', payload);
-});
+}); */
 
 
 //deepesh
-/*
+
 connection.on('initActivity', initialize);
 	connection.on('clickedNext', onClickedNext);
 	connection.on('clickedBack', onClickedBack);
 	connection.on('gotoStep', onGotoStep);
-	connection.on('requestedInteraction', requestedInteractionHandler);
+	
     connection.trigger('updateActivity', payload);
-    */
+    
 
-//});
+ // });
 
 
