@@ -152,12 +152,12 @@ function save () {
     }
     inArguments["pkColumnNumber"]=pkColumnNumber;
     inArguments["columnNumber"]=columnNumber;
-    console.log("Built inArguments are : " + JSON.stringify(inArguments))
+    console.log("Built inArguments are ::: " + JSON.stringify(inArguments))
   // var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
   // var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
   // var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
   // var destCloumnName2 = document.getElementById('destCloumnName2').value;
-   payload['arguments'].execute.inArguments = inArguments;  
+   payload['arguments'].execute.inArguments = [inArguments];  
    payload['arguments'].execute.useJwt = true;
    payload['configurationArguments'].save.useJwt = true;
    payload['metaData'].isConfigured = true;
