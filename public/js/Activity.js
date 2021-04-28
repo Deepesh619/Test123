@@ -61,7 +61,7 @@ connection.on('gotoStep', onGotoStep);
 
 
 function onClickedNext () {
-    console.log('Cueetne step'+currentStep.key);
+    console.log('Current step'+currentStep.key);
    if (currentStep.key == 'mapping') {
        save();
    } else {
@@ -77,8 +77,8 @@ function onClickedBack () {
 }
 
 
-
 function onGotoStep (step) {
+    console.log('IN GOTO step ')
    showStep(step);
    connection.trigger('ready');
 }
