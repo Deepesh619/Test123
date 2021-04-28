@@ -47,7 +47,8 @@
   },
 
   "wizardSteps": [
-    {"key": "nextbutton", "label": "Next"}
+    {"key": "nextbutton", "label": "Next"},
+    {"key": "mapping", "label": "Mappigng"}
     
 ],
 "outcomes": [
@@ -57,6 +58,15 @@
         },
         "metaData": {
             "label": "Next"
+        }
+    },
+
+    {
+        "arguments": {
+            "branchResult": "mapping"
+        },
+        "metaData": {
+            "label": "Mapping"
         }
     }
     

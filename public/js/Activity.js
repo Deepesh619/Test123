@@ -2,6 +2,67 @@
     var payload = {};
     var connection = new Postmonger.Session();
 
+//Deepesh
+var steps = [
+    {'key': 'nextbutton', 'label': 'Next'},
+    {'key': 'mapping', 'label': 'Mapping'}
+];
+var currentStep = steps[0].key;
+var eventDefinitionKey = '';
+var deFields = [];
+
+$(window).ready(function () {
+    connection.trigger('ready');
+    connection.trigger('requestInteraction');
+});
+
+function initialize (data) {
+    if (data) {
+        payload = data;
+    }
+}
+
+function onClickedNext () {
+    if (currentStep.key === 'mapping') {
+        save();
+    } else {
+        connection.trigger('nextStep');
+    }
+}
+
+function onClickedBack () {
+    connection.trigger('prevStep');
+}
+
+function onGotoStep (step) {
+    showStep(step);
+    connection.trigger('ready');
+}
+
+function showStep (step, stepIndex) {
+    if (stepIndex && !step) {
+        step = steps[stepIndex - 1];
+    }
+
+    currentStep = step;
+
+    $('.step').hide();
+
+    switch (currentStep.key) {
+    case 'nextbutton':
+        $('#step1').show();
+        $('#step1 input').focus();
+        break;
+    case 'idselection':
+        $('#step2').show();
+        $('#step2 input').focus();
+        break;
+    }
+}
+
+
+
+//Deepesh end
 connection.trigger('ready');
 connection.on('initActivity',function(data){
     console.log(data);
