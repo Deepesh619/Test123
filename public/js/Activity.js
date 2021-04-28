@@ -10,7 +10,7 @@ define('module',function (require) {
     var payload = {};
 
 var steps = [
-    {'key': 'nextbutton', 'label': 'Next'},
+    {'key': 'nextbutton', 'label': 'Select Data Extension key'},
     {'key': 'mapping', 'label': 'Mapping'}
 ];
 var currentStep = steps[0].key;
@@ -65,19 +65,10 @@ function showStep (step, stepIndex) {
         break;
     }
 }
-connection.on('initActivity', initialize);
-	connection.on('clickedNext', onClickedNext);
-	connection.on('clickedBack', onClickedBack);
-	connection.on('gotoStep', onGotoStep);
-	connection.on('requestedInteraction', requestedInteractionHandler);
-    connection.trigger('updateActivity', payload);
-
-});
-
 
 
 //Deepesh end
-/*
+
 connection.trigger('ready');
 connection.on('initActivity',function(data){
     console.log(data);
@@ -132,4 +123,15 @@ connection.on('clickedNext',function(){
    // console.log('Total PAyload: - '+JSON.stringify(payload));
     connection.trigger('updateActivity', payload);
 });
-*/
+
+
+//deepesh
+connection.on('initActivity', initialize);
+	connection.on('clickedNext', onClickedNext);
+	connection.on('clickedBack', onClickedBack);
+	connection.on('gotoStep', onGotoStep);
+	connection.on('requestedInteraction', requestedInteractionHandler);
+    connection.trigger('updateActivity', payload);
+
+});
+
