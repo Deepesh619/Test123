@@ -13,6 +13,7 @@ var steps = [
     {'key': 'dekey', 'label': 'Select Data Extension key'},
     {'key': 'mapping', 'label': 'Mapping'}
 ];
+
 var currentStep = steps[0].key;
 var eventDefinitionKey = '';
 var deFields = [];
@@ -76,7 +77,7 @@ connection.on('initActivity',function(data){
         payload = data;
     }
     document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
-    document.getElementById('mapping').value= payload['arguments'].execute.inArguments[0].mapping;
+    document.getElementById('DEmapping').value= payload['arguments'].execute.inArguments[0].DEmapping;
    // document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
     //document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
     //document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
@@ -100,6 +101,7 @@ function(eventDefinitionModel) {
 
 
 connection.on('clickedNext',function(){
+    var DEmapping = document.getElementById('mapping').value;
     var DEName = document.getElementById('DEName').value;
     var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
     var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
