@@ -17,11 +17,13 @@ connection.on('initActivity',function(data){
    }
    var pkColumnNumberData =  payload['arguments'].execute.inArguments[0].pkColumnNumber;
    var columnNumberData =  payload['arguments'].execute.inArguments[0].columnNumber;
+   var test =  payload['arguments'].execute.inArguments[0].pkSrcCloumnName1;
+   console.log('pkSrcCloumnName1 is : ' + test);
    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
    document.getElementById('pkColumnNumber').value= pkColumnNumberData;
    document.getElementById('columnNumber').value= columnNumberData;
    for (var i=1;i<=pkColumnNumberData;i++){
-    document.getElementById('pkSrcCloumnName'+i).value = payload['arguments'].execute.inArguments[0].pkSrcCloumnName+i
+    document.getElementById('pkSrcCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkSrcCloumnName'+i];
     document.getElementById('pkDestCloumnName'+i).value = payload['arguments'].execute.inArguments[0].pkDestCloumnName+i
    }
    for (var i=1;i<=columnNumberData;i++){
@@ -152,6 +154,7 @@ function save () {
     }
     inArguments["pkColumnNumber"]=pkColumnNumber;
     inArguments["columnNumber"]=columnNumber;
+    inArguments["DEName"]=DEName;
     console.log("Built inArguments are ::: " + JSON.stringify(inArguments))
   // var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
   // var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
