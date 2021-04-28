@@ -10,7 +10,7 @@ define('module',function (require) {
     var payload = {};
 
 var steps = [
-    {'key': 'nextbutton', 'label': 'Select Data Extension key'},
+    {'key': 'dekey', 'label': 'Select Data Extension key'},
     {'key': 'mapping', 'label': 'Mapping'}
 ];
 var currentStep = steps[0].key;
@@ -55,7 +55,7 @@ function showStep (step, stepIndex) {
     $('.step').hide();
 
     switch (currentStep.key) {
-    case 'nextbutton':
+    case 'dekey':
         $('#step1').show();
         $('#step1 input').focus();
         break;
@@ -122,7 +122,7 @@ connection.on('clickedNext',function(){
     payload['key'] = 'REST-1';
     payload['type'] = 'REST';
    // console.log('Total PAyload: - '+JSON.stringify(payload));
-    connection.trigger('updateActivity', payload);
+  //  connection.trigger('updateActivity', payload);
 });
 
 
