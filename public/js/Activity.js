@@ -61,9 +61,11 @@ connection.on('gotoStep', onGotoStep);
 
 
 function onClickedNext () {
-   if (currentStep.key === 'mapping') {
+    console.log('Cueetne step'+currentStep.key);
+   if (currentStep.key == 'mapping') {
        save();
    } else {
+    console.log('Is it in else part: ');
        connection.trigger('nextStep');
    }
 }
