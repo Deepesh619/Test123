@@ -59,7 +59,7 @@ function showStep (step, stepIndex) {
         $('#step1').show();
         $('#step1 input').focus();
         break;
-    case 'idselection':
+    case 'mapping':
         $('#step2').show();
         $('#step2 input').focus();
         break;
