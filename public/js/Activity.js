@@ -1,3 +1,4 @@
+const { save } = require("../../routes/activity");
 
     var payload = {};
     var connection = new Postmonger.Session();
@@ -32,6 +33,14 @@ function(eventDefinitionModel) {
 
 
 connection.on('clickedNext',function(){
+    if (currentStep.key == 'confirm')
+    {
+        save();
+    }
+
+    else
+    {
+
     var DEName = document.getElementById('DEName').value;
     var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
     var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
@@ -55,5 +64,6 @@ connection.on('clickedNext',function(){
     payload['type'] = 'REST';
    // console.log('Total PAyload: - '+JSON.stringify(payload));
     connection.trigger('updateActivity', payload);
+}
 });
 
