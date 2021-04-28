@@ -1,9 +1,12 @@
 
-    var payload = {};
-    var connection = new Postmonger.Session();
+   // var payload = {};
+   // var connection = new Postmonger.Session();
 
 //Deepesh
 var Postmonger = require('postmonger');
+var connection = new Postmonger.Session();
+'use strict';
+var payload = {};
 var steps = [
     {'key': 'nextbutton', 'label': 'Next'},
     {'key': 'mapping', 'label': 'Mapping'}
