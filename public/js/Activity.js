@@ -65,7 +65,7 @@ function createrows(){
     for (var i=1;i<=pkColumnNumber;i++){
     var htmlId = document.getElementById('pkSrcCloumnName'+i);
     if (htmlId != null) {
-       break;
+       continue;
     }
     var row = table.insertRow(i);
     var cell1 = row.insertCell(0);
@@ -83,7 +83,7 @@ function createrows(){
     for (var i=1;i<=pkColumnNumber;i++){
     var htmlId = document.getElementById('srcCloumnName'+i);
     if (htmlId != null) {
-       break;
+       continue;
     }
     var row = table.insertRow(i);
     var cell1 = row.insertCell(0);
