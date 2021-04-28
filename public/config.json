@@ -46,31 +46,6 @@
       
   },
 
-  "wizardSteps": [
-    {"key": "dekey", "label": "Select Data Extension key"},
-    {"key": "mapping", "label": "Mappigng"}
-    
-],
-"outcomes": [
-    {
-        "arguments": {
-            "branchResult": "dekey"
-        },
-        "metaData": {
-            "label": "Select Data Extension key"
-        }
-    },
-
-    {
-        "arguments": {
-            "branchResult": "mapping"
-        },
-        "metaData": {
-            "label": "Mapping"
-        }
-    }
-    
-],
 
 
   "userInterfaces": {
