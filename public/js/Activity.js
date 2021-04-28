@@ -135,7 +135,7 @@ function showStep (step, stepIndex) {
 function save () {
     var DEName = document.getElementById('DEName').value;
     console.log('DEName: '+DEName);
-    var inArguments = [];
+    var inArguments = {};
     for (var i=1;i<=pkColumnNumber;i++){
         var sourceColumnName = document.getElementById('pkSrcCloumnName'+i).value;
         var destColumnName = document.getElementById('pkDestCloumnName'+i).value;
@@ -152,6 +152,7 @@ function save () {
     }
     inArguments["pkColumnNumber"]=pkColumnNumber;
     inArguments["columnNumber"]=columnNumber;
+    console.log("Built inArguments are : " + JSON.stringify(inArguments))
   // var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
   // var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
   // var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
