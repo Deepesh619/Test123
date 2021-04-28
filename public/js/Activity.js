@@ -3,8 +3,8 @@
     //var connection = new Postmonger.Session();
 
 //Deepesh
-'use strict';
-define('module',function (require) {
+//'use strict';
+//define('module',function (require) {
 	var Postmonger = require('postmonger');
 	var connection = new Postmonger.Session();
     var payload = {};
@@ -140,6 +140,6 @@ connection.on('initActivity', initialize);
     connection.trigger('updateActivity', payload);
     */
 
-});
+//});
 
 
