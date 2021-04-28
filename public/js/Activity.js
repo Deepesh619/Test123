@@ -6,7 +6,7 @@
 ];
 
 var currentStep = steps[0].key;
-var pkcolumnNumber = 0;
+var pkColumnNumber = 0;
 var columnNumber = 0;
 
 connection.trigger('ready');
@@ -15,11 +15,19 @@ connection.on('initActivity',function(data){
    if (data) {
        payload = data;
    }
+   var pkColumnNumberData =  payload['arguments'].execute.inArguments[0].pkColumnNumber;
+   var columnNumberData =  payload['arguments'].execute.inArguments[0].columnNumber;
    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
-  // document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
-  // document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
-  // document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
-  // document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
+   document.getElementById('pkColumnNumber').value= pkColumnNumberData;
+   document.getElementById('columnNumber').value= columnNumberData;
+   for (var i=1;i<=pkColumnNumberData;i++){
+    document.getElementById('pkSrcCloumnName'+i).value = payload['arguments'].execute.inArguments[0].pkSrcCloumnName+i
+    document.getElementById('pkDestCloumnName'+i).value = payload['arguments'].execute.inArguments[0].pkDestCloumnName+i
+   }
+   for (var i=1;i<=columnNumberData;i++){
+    document.getElementById('srcCloumnName'+i).value = payload['arguments'].execute.inArguments[0].srcCloumnName+i
+    document.getElementById('destCloumnName'+i).value = payload['arguments'].execute.inArguments[0].destCloumnName+i
+   }
 }); 
 var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
@@ -49,20 +57,42 @@ function onClickedNext () {
 }
 
 function createrows(){
-    pkcolumnNumber = parseInt(document.getElementById('pkColumnNumber').value);
+    pkColumnNumber = parseInt(document.getElementById('pkColumnNumber').value);
     columnNumber = parseInt(document.getElementById('columnNumber').value);
     var table = document.getElementById('pkColumnTable');
-    for (var i=1;i<=pkcolumnNumber;i++){
+    for (var i=1;i<=pkColumnNumber;i++){
+    var htmlId = document.getElementById('pkSrcCloumnName'+i);
+    if (htmlId != null) {
+       break;
+    }
     var row = table.insertRow(i);
     var cell1 = row.insertCell(0);
-    cell1.innerHTML="Column "+i+"(Destination should be Primary Key Column)";
+    cell1.innerHTML="Primary Destination Column "+i;
+    var cell2 = row.insertCell(1);
+    var element1 = document.createElement("textarea");
+    element1.id="pkSrcCloumnName"+i;
+    cell2.appendChild(element1);
+    var cell3 = row.insertCell(2);
+    var element2 = document.createElement("textarea");
+    element2.id="pkDestCloumnName"+i;
+    cell3.appendChild(element2);
+    }
+    var table = document.getElementById('columnTable');
+    for (var i=1;i<=pkColumnNumber;i++){
+    var htmlId = document.getElementById('srcCloumnName'+i);
+    if (htmlId != null) {
+       break;
+    }
+    var row = table.insertRow(i);
+    var cell1 = row.insertCell(0);
+    cell1.innerHTML="Non-Primary Destination Column "+i;
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
     element1.id="srcCloumnName"+i;
     cell2.appendChild(element1);
     var cell3 = row.insertCell(2);
     var element2 = document.createElement("textarea");
-    element2.id="pkDestCloumnName"+i;
+    element2.id="DestCloumnName"+i;
     cell3.appendChild(element2);
     }
 }
@@ -105,20 +135,34 @@ function showStep (step, stepIndex) {
 function save () {
     var DEName = document.getElementById('DEName').value;
     console.log('DEName: '+DEName);
+    var inArguments = [];
+    for (var i=1;i<=pkColumnNumber;i++){
+        var sourceColumnName = document.getElementById('pkSrcCloumnName'+i).value;
+        var destColumnName = document.getElementById('pkDestCloumnName'+i).value;
+        inArguments["pkSrcCloumnName"+i]=sourceColumnName;
+        inArguments["pkSrcCloumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
+        inArguments["pkDestCloumnName"+i]=destColumnName;
+    }
+    for (var i=1;i<=columnNumber;i++){
+        var sourceColumnName = document.getElementById('srcCloumnName'+i).value;
+        var destColumnName = document.getElementById('pkDestCloumnName'+i).value;
+        inArguments["srcCloumnName"+i]=sourceColumnName;
+        inArguments["srcCloumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
+        inArguments["destCloumnName"+i]=destColumnName;
+    }
+    inArguments["pkColumnNumber"]=pkColumnNumber;
+    inArguments["columnNumber"]=columnNumber;
   // var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
   // var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
   // var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
   // var destCloumnName2 = document.getElementById('destCloumnName2').value;
-   console.log('DEName is : '+ DEName);
-   payload['arguments'].execute.inArguments = [{ 
-        "DEName" : DEName
-    }];  
+   payload['arguments'].execute.inArguments = inArguments;  
    payload['arguments'].execute.useJwt = true;
    payload['configurationArguments'].save.useJwt = true;
    payload['metaData'].isConfigured = true;
    payload['key'] = 'REST-1';
    payload['type'] = 'REST';
-  // console.log('Total PAyload: - '+JSON.stringify(payload));
+   console.log('Total PAyload: - '+JSON.stringify(payload));
    connection.trigger('updateActivity', payload);
 }
 
