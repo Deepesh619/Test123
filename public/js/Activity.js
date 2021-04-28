@@ -9,6 +9,7 @@ define('module',function (require) {
 	var connection = new Postmonger.Session();
     var payload = {};
 
+    /*
 var steps = [
     {'key': 'dekey', 'label': 'Select Data Extension key'},
     {'key': 'DEmapping', 'label': 'Mapping'}
@@ -66,7 +67,7 @@ function showStep (step, stepIndex) {
         break;
     }
 }
-
+*/
 
 //Deepesh end
 
@@ -78,10 +79,10 @@ connection.on('initActivity',function(data){
     }
     document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
     document.getElementById('DEmapping').value= payload['arguments'].execute.inArguments[0].DEmapping;
-   // document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
-    //document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
-    //document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
-    //document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
+    document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
+    document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
+    document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
+    document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
 }); 
 var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');
@@ -125,17 +126,19 @@ connection.on('clickedNext',function(){
     payload['key'] = 'REST-1';
     payload['type'] = 'REST';
    // console.log('Total PAyload: - '+JSON.stringify(payload));
-  //  connection.trigger('updateActivity', payload);
+    connection.trigger('updateActivity', payload);
 });
 
 
 //deepesh
+/*
 connection.on('initActivity', initialize);
 	connection.on('clickedNext', onClickedNext);
 	connection.on('clickedBack', onClickedBack);
 	connection.on('gotoStep', onGotoStep);
 	connection.on('requestedInteraction', requestedInteractionHandler);
     connection.trigger('updateActivity', payload);
+    */
 
 });
 
