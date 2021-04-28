@@ -92,13 +92,15 @@ function showStep (step, stepIndex) {
 
    document.getElementById("step1").style.display = 'none';
    document.getElementById("step2").style.display = 'none';
+   console.log('Current step 1-'+currentStep.key);
 
    switch (currentStep.key) {
    case 'dekey':
       document.getElementById("step1").style.display = 'block';
        break;
    case 'DEmapping':
-       document.getElementById("step2").style.display = 'block';
+       console.log('In the DE mapping- ');
+       document.getElementById("step2").style.display = '';
        break;
    }
 }
