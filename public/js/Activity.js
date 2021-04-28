@@ -4,7 +4,7 @@
 
 //Deepesh
 'use strict';
-define(function (require) {
+define('module',function (require) {
 	var Postmonger = require('postmonger');
 	var connection = new Postmonger.Session();
     var payload = {};
@@ -56,8 +56,8 @@ function showStep (step, stepIndex) {
 
     switch (currentStep.key) {
     case 'nextbutton':
-        $('nextbutton').show();
-        $('nextbutton').focus();
+        $('#step1').show();
+        $('#step1 input').focus();
         break;
     case 'idselection':
         $('#step2').show();
@@ -70,6 +70,7 @@ connection.on('initActivity', initialize);
 	connection.on('clickedBack', onClickedBack);
 	connection.on('gotoStep', onGotoStep);
 	connection.on('requestedInteraction', requestedInteractionHandler);
+    connection.trigger('updateActivity', payload);
 
 });
 
