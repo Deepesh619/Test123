@@ -5,7 +5,7 @@
 //Deepesh
 //'use strict';
 //define('module',function (require) {
-	var Postmonger = require('postmonger');
+	//var Postmonger = require('postmonger');
 	var connection = new Postmonger.Session();
     var payload = {};
 
