@@ -104,7 +104,7 @@ function showStep (step, stepIndex) {
 
 
 function save () {
-    var DEName = document.getElementById('DEName').value;
+    var DEName = [document.getElementById('DEName').value];
     console.log('DEnmae: '+DEName);
    var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
    var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
