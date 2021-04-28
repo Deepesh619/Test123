@@ -23,12 +23,12 @@ connection.on('initActivity',function(data){
    document.getElementById('pkColumnNumber').value= pkColumnNumberData;
    document.getElementById('columnNumber').value= columnNumberData;
    for (var i=1;i<=pkColumnNumberData;i++){
-    document.getElementById('pkSrcCloumnName'+i).value = payload['arguments'].execute.inArguments[0].pkSrcCloumnName+i;
-    document.getElementById('pkDestCloumnName'+i).value = payload['arguments'].execute.inArguments[0].pkDestCloumnName+i
+    document.getElementById('pkSrcCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkSrcCloumnName'+i];
+    document.getElementById('pkDestCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkDestCloumnName'+i];
    }
    for (var i=1;i<=columnNumberData;i++){
-    document.getElementById('srcCloumnName'+i).value = payload['arguments'].execute.inArguments[0].srcCloumnName+i
-    document.getElementById('destCloumnName'+i).value = payload['arguments'].execute.inArguments[0].destCloumnName+i
+    document.getElementById('srcCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['srcCloumnName'+i];
+    document.getElementById('destCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['destCloumnName'+i];
    }
 }); 
 var eventDefinitionKey;
@@ -80,7 +80,7 @@ function createrows(){
     cell3.appendChild(element2);
     }
     var table = document.getElementById('columnTable');
-    for (var i=1;i<=pkColumnNumber;i++){
+    for (var i=1;i<=columnNumber;i++){
     var htmlId = document.getElementById('srcCloumnName'+i);
     if (htmlId != null) {
        continue;
