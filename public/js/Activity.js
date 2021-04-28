@@ -100,7 +100,7 @@ function showStep (step, stepIndex) {
        break;
    case 'DEmapping':
        console.log('In the DE mapping- ');
-       document.getElementById("step2").style.display = '';
+       document.getElementById("step2").style.display = 'block';
        break;
    }
 }
