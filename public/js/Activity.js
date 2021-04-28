@@ -11,7 +11,7 @@ define('module',function (require) {
 
 var steps = [
     {'key': 'dekey', 'label': 'Select Data Extension key'},
-    {'key': 'mapping', 'label': 'Mapping'}
+    {'key': 'DEmapping', 'label': 'Mapping'}
 ];
 
 var currentStep = steps[0].key;
@@ -60,7 +60,7 @@ function showStep (step, stepIndex) {
         $('#step1').show();
         $('#step1 input').focus();
         break;
-    case 'mapping':
+    case 'DEmapping':
         $('#step2').show();
         $('#step2 input').focus();
         break;

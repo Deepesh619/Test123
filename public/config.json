@@ -50,24 +50,7 @@
 		{"key": "dekey", "label": "Enter Data Extension key"},
 		{"key": "mapping", "label": "Mapping"}
 	],
-	"outcomes": [
-		{
-			"arguments": {
-				"branchResult": "dekey"
-			},
-			"metaData": {
-				"label": "Enter Data Extension key"
-			}
-		},
-		{
-			"arguments": {
-				"branchResult": "mapping"
-			},
-			"metaData": {
-				"label": "Mapping"
-			}
-		}
-	],
+	
   
     "userInterfaces": {
         "configModal": {
