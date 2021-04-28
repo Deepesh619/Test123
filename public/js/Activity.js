@@ -148,7 +148,7 @@ function save () {
     }
     for (var i=1;i<=columnNumber;i++){
         var sourceColumnName = document.getElementById('srcCloumnName'+i).value;
-        var destColumnName = document.getElementById('pkDestCloumnName'+i).value;
+        var destColumnName = document.getElementById('destCloumnName'+i).value;
         inArguments["srcCloumnName"+i]=sourceColumnName;
         inArguments["srcCloumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
         inArguments["destCloumnName"+i]=destColumnName;
