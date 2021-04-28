@@ -35,10 +35,10 @@ var currentStep = steps[0].key;
 //var eventDefinitionKey = '';
 var deFields = [];
 
-$(window).ready(function () {
+/* $(window).ready(function () {
     connection.trigger('ready');
     connection.trigger('requestInteraction');
-});
+}); */
 
 function initialize (data) {
     if (data) {
@@ -76,7 +76,7 @@ function onClickedNext () {
         connection.trigger('updateActivity', payload);
 
         save();
-        
+
     } else {
         connection.trigger('nextStep');
     }
