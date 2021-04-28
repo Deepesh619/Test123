@@ -1,12 +1,11 @@
 
-   // var payload = {};
+    var payload = {};
    // var connection = new Postmonger.Session();
 
 //Deepesh
 var Postmonger = require('postmonger');
 var connection = new Postmonger.Session();
 'use strict';
-var payload = {};
 var steps = [
     {'key': 'nextbutton', 'label': 'Next'},
     {'key': 'mapping', 'label': 'Mapping'}
@@ -54,8 +53,8 @@ function showStep (step, stepIndex) {
 
     switch (currentStep.key) {
     case 'nextbutton':
-        $('#step1').show();
-        $('#step1 input').focus();
+        $('nextbutton').show();
+        $('nextbutton').focus();
         break;
     case 'idselection':
         $('#step2').show();
