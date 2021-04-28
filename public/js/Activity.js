@@ -62,7 +62,7 @@ connection.on('gotoStep', onGotoStep);
 
 function onClickedNext () {
     console.log('Current step'+currentStep.key);
-   if (currentStep.key == 'mapping') {
+   if (currentStep.key == 'DEmapping') {
        save();
    } else {
     console.log('Is it in else part: ');
@@ -107,7 +107,7 @@ function showStep (step, stepIndex) {
 
 function save () {
     var DEName = document.getElementById('DEName').value;
-    console.log('DEnmae: '+DEName);
+    console.log('DEName: '+DEName);
    var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
    var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
    var srcCloumnName2 = document.getElementById('srcCloumnName2').value;
