@@ -1,68 +1,74 @@
 <!DOCTYPE html>
+<html>
 
-<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Service Cloud Custom Split</title>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script data-main="js/main.js" type="text/javascript" src="js/require.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/postmonger.js"></script>
+     <script type="text/javascript" src="js/require.js"></script>
+  <!-- <script type="text/javascript">
+        (function () {
+            var config = {
+                baseUrl: 'js'   
+            };
 
-	<style type="text/css">
-		body {
-			padding: 15px;
-			margin: 0;
-			font-size: 11px;
-			color: #16325c;
-			font-family: "Salesforce Sans", Arial, sans-serif;
-		}
+            var dependencies = [                            
+            'Activity'
+            ];
 
-		.step {
-			display: none;
-		}
-
-		#step1 {
-			display: block;
-		}
-
-		input {
-			font-family: inherit;
-			display: block;
-			padding: 4px 5px;
-			font-size: 11px;
-			color: #16325c;
-			background-color: #ffffff;
-			background-image: none;
-			border: 1px solid #d8dde6;
-			border-radius: 0.25rem;
-			-webkit-box-shadow: none;
-			box-shadow: none;
-		}
-
-		input[type=text] {
-			width: 95%;
-			margin-bottom: 40px;
-		}
-
-		.inputLabel {
-			margin-bottom: 5px;
-			font-size: 8pt;
-			color: #808080;
-			text-transform: uppercase;
-		}
-	</style>
+            require([config, dependencies]);
+        })();   
+    </script> -->
 </head>
+
 <body>
-	<div id="step1" class="step">
-		<p>Reading the event definition key of the journey's entry event..</p>
-		<p class="inputLabel">Event Definition Key</p>
-		<input id="select-entryevent-defkey" placeholder="journey entry event's event definition key" type="text" required="required" disabled="disabled" minlength="1" />
-	</div>
-	<div id="step2" class="step">
-		<p>Please select the ID (event data column) to pass to the custom split backend.</p>
-		<p class="inputLabel">ID</p>
-		<input id="select-id" placeholder="ID to pass to the backend" type="text" />
-		<select id="select-id-dropdown">
-		</select>
-	</div>
+    <div id="step1" class="step">
+    <h1>Configure Destination Data Extension for insert !</h1>
+    <textarea id="DEName"></textarea>
+    <table>
+        <tr><td><h2>Please configure the mapping below</h2></td>
+            <td><textarea id="mapping"></textarea></td>
+            </tr>
+    </table>
+ 
+</div>
+<div id="step2" class="step">
+ <table>
+<tr>
+    <td><h3>Column Number</h3></td>
+    <td><h3>Entry Source Column</h3></td>
+    <td><h3>Destination Data Extension Column</h3></td>
+</tr>
+<tr>
+    <td><h3>Column 1 (Destination should be Primary Key Column)</h3></td>
+    <td><textarea id="srcCloumnName1"></textarea></td>
+    <td><textarea id="pkDestCloumnName1"></textarea></td>
+</tr>
+<tr>
+    <td><h3>Column 2 </h3></td>
+    <td><textarea id="srcCloumnName2"></textarea></td>
+    <td><textarea id="destCloumnName2"></textarea></td>
+</tr>
+ </table>
+    <script type="module" src="js/Activity.js"></script>
+</div>
+     
+    <!--
+    <div id="step1" class="step">
+        <div class="slds-grid">
+
+            <main class="slds-col">
+               
+                <h1>Welcome to your activity by PeXa!</h1>
+            </main>
+            
+
+        </div>
+
+    </div>-->
 </body>
+
 </html>
