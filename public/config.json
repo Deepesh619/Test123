@@ -53,7 +53,16 @@
 {
     "label": "Step 2",
     "key": "step2"
-}],
+},
+{
+    "label": "Step 3",
+    "key": "step3"
+},
+{
+    "label": "Step 4",
+    "key": "step4"
+}
+],
 
 
   "userInterfaces": {
@@ -62,5 +71,36 @@
           "width": 300,
           "fullscreen": true
       }
-  }
+  },
+  "schema": {
+    "arguments": {
+        "execute": {
+            "inArguments": [
+                {
+                "myInArgument": {
+                    "dataType": "Text",
+                    "isNullable": false,
+                    "direction": "in"
+                }
+            }, 
+            {
+                "name": {
+                    "dataType": "Text",
+                    "isNullable": false,
+                    "direction": "in"
+                }
+            }
+        ],
+            "outArguments": [
+                {
+                    "name": {
+                        "dataType": "Text",
+                        "direction": "out",
+                        "access": "visible"
+                    }
+                }
+            ]
+        }
+    }
+    }
 }
