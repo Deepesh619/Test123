@@ -12,7 +12,7 @@ var http = require('https');
 var querystring = require('querystring');
 const { Console } = require('console');
 exports.logExecuteData = [];
-var rowData= [];
+//var rowData= [];
 
 function logData(req) {
     exports.logExecuteData.push({
@@ -154,20 +154,29 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;          
-            console.log("Value of Src Col1 from inArgument : " + decoded.inArguments[0].srcCloumnValue1);
-            console.log("Value of Src Col2 from inArgument : " + decoded.inArguments[0].srcCloumnValue2);
-            console.log("Dest Col1 from inArgument : " + decoded.inArguments[0].pkDestCloumnName1);
-            console.log("Dest Col2 from inArgument : " + decoded.inArguments[0].destCloumnName2);
+          //  console.log("Value of Src Col1 from inArgument : " + decoded.inArguments[0].srcCloumnValue1);
+          //  console.log("Value of Src Col2 from inArgument : " + decoded.inArguments[0].srcCloumnValue2);
+          //  console.log("Dest Col1 from inArgument : " + decoded.inArguments[0].pkDestCloumnName1);
+          //  console.log("Dest Col2 from inArgument : " + decoded.inArguments[0].destCloumnName2);
+          var pkColumnNumberData =  decoded.inArguments[0].pkColumnNumber;
+          var columnNumberData =  decoded.inArguments[0].columnNumber;
+          var setKey={};
+          var setValues={};
+          for (var i=1;i<=pkColumnNumberData;i++){
+            var destColumnName = decoded.inArguments[0]['pkDestCloumnName'+i];
+            var srcColumnValue = decoded.inArguments[0]['pkSrcCloumnValue'+i];
+            setKey[destColumnName]=srcColumnValue;
+           }
+           for (var i=1;i<=columnNumberData;i++){
+            var destColumnName = decoded.inArguments[0]['destCloumnName'+i];
+            var srcColumnValue = decoded.inArguments[0]['srcCloumnValue'+i];
+            setValues[destColumnName]=srcColumnValue;
+           }
             rowData = [{
-              "keys":{
-                [decoded.inArguments[0].pkDestCloumnName1]:decoded.inArguments[0].srcCloumnValue1
-                      },
-              "values":{
-                [decoded.inArguments[0].destCloumnName2]:decoded.inArguments[0].srcCloumnValue2
-                      }
-             
+              "keys":setKey,
+              "values":setValues             
                     }]; 
-                   
+                    console.log('Row Data :'+ JSON.stringify(rowData));     
 
             //res.send(200, 'Execute');
         } else {
