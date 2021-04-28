@@ -101,7 +101,7 @@ function(eventDefinitionModel) {
 
 
 connection.on('clickedNext',function(){
-    var DEmapping = document.getElementById('mapping').value;
+    var DEmapping = document.getElementById('DEmapping').value;
     var DEName = document.getElementById('DEName').value;
     var srcCloumnName1 = document.getElementById('srcCloumnName1').value;
     var pkDestCloumnName1 = document.getElementById('pkDestCloumnName1').value;
@@ -115,7 +115,8 @@ connection.on('clickedNext',function(){
         "srcCloumnName2" : srcCloumnName2,
         "DEName" : DEName,
         "pkDestCloumnName1" : pkDestCloumnName1,
-        "destCloumnName2" : destCloumnName2
+        "destCloumnName2" : destCloumnName2,
+        "DEmapping": DEmapping
     }];
    
     payload['arguments'].execute.useJwt = true;
