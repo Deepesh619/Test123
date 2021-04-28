@@ -3,6 +3,7 @@
     var connection = new Postmonger.Session();
 
 //Deepesh
+var Postmonger = require('postmonger');
 var steps = [
     {'key': 'nextbutton', 'label': 'Next'},
     {'key': 'mapping', 'label': 'Mapping'}
