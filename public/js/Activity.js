@@ -76,10 +76,11 @@ connection.on('initActivity',function(data){
         payload = data;
     }
     document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
-    document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
-    document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
-    document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
-    document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
+    document.getElementById('mapping').value= payload['arguments'].execute.inArguments[0].mapping;
+   // document.getElementById('srcCloumnName1').value= payload['arguments'].execute.inArguments[0].srcCloumnName1;
+    //document.getElementById('pkDestCloumnName1').value= payload['arguments'].execute.inArguments[0].pkDestCloumnName1;
+    //document.getElementById('srcCloumnName2').value= payload['arguments'].execute.inArguments[0].srcCloumnName2;
+    //document.getElementById('destCloumnName2').value= payload['arguments'].execute.inArguments[0].destCloumnName2;
 }); 
 var eventDefinitionKey;
 connection.trigger('requestTriggerEventDefinition');

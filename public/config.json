@@ -47,7 +47,7 @@
   },
 
   "wizardSteps": [
-    {"key": "nextbutton", "label": "Next"},
+    {"key": "nextbutton", "label": "Select Data Extension key"},
     {"key": "mapping", "label": "Mappigng"}
     
 ],
