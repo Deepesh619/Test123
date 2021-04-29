@@ -2,7 +2,7 @@
     "workflowApiVersion": "1.1",
     "metaData": {
         "icon": "images/icon.png",
-        "category": "message"
+        "category": "custom"
     },
     "key":"REST-1",
     "type": "REST",
