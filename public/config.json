@@ -16,9 +16,7 @@
     "arguments": {
         "execute": {
             "inArguments": [{
-                 "ContactKey": "0033B00HHH9hUFQAZ",
-          "Email": "akhil.passi444@accenture.com",
-          "DEName":"Demo",
+          "DEName":"Enter the External Key",
           "pkColumnNumber":"1",
           "columnNumber":"0"
             }],
