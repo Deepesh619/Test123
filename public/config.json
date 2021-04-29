@@ -18,7 +18,9 @@
             "inArguments": [{
                  "ContactKey": "0033B00HHH9hUFQAZ",
           "Email": "akhil.passi444@accenture.com",
-          "DEName":"Demo"
+          "DEName":"Demo",
+          "pkColumnNumber":"1",
+          "columnNumber":"0"
             }],
             "outArguments": [],
             "timeout": 100000,
