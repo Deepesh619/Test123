@@ -59,22 +59,25 @@ function onClickedNext () {
    }
 }
 
-function deleteRows(table,rowCount,columnCount){
+/*function deleteRows(table,rowCount,columnCount){
     do{
         table.deleteRow(rowCount-1);
         rowCount--;
     }
     while(rowCount==columnCount);
-}
+}*/
 
 function createrows(){
     pkColumnNumber = parseInt(document.getElementById('pkColumnNumber').value);
     columnNumber = parseInt(document.getElementById('columnNumber').value);
     var table = document.getElementById('pkColumnTable');
     var rowCount = table.rows.length;
-    if (rowCount > pkColumnNumber){
+    console.log('pkColumnNumber : ' + pkColumnNumber);
+    console.log('columnNumber : ' + columnNumber);
+    console.log('rowCount : ' + rowCount);
+   /* if (rowCount > pkColumnNumber){
         deleteRows(table,rowCount,pkColumnNumber);
-    } 
+    }*/ 
     for (var i=1;i<=pkColumnNumber;i++){
     var htmlId = document.getElementById('pkSrcCloumnName'+i);
     if (htmlId != null) {
@@ -94,9 +97,10 @@ function createrows(){
     }
     var table2 = document.getElementById('columnTable');
     var rowCount2 = table2.rows.length; 
-    if (rowCount2 > columnNumber){
+    console.log('rowCount2 : ' + rowCount2);
+    /*if (rowCount2 > columnNumber){
         deleteRows(table,rowCount2,columnNumber);
-    } 
+    } */
     for (var i=1;i<=columnNumber;i++){
     var htmlId = document.getElementById('srcCloumnName'+i);
     if (htmlId != null) {
