@@ -12,14 +12,15 @@
 </head>
 
 <body>
-    <table cellspacing="15">
+    <table>
     <tr><td>
-<div id="step1">
+    <div id="step1">
         <p style = "font-family:system-ui;font-size:16px;">
     Configure Destination Data Extension for insert1!
 </p></td>
-    <td><textarea id="DEName"></textarea></td></tr>
-
+    <td><textarea id="DEName"></textarea></td>
+</div>
+    <table>
         <tr><td><p style = "font-family:system-ui;font-size:16px;">
             Please mention the number of Primary columns you want to map:</p> </td>
             <td><select  id="pkColumnNumber">
@@ -36,7 +37,7 @@
             </select></td>
             </tr>
             <tr><td><p style = "font-family:system-ui;font-size:16px;">
-                Please mention the number of Non-Primary columns you want to map: </p></td>
+                Please mention the number of Non-Primary columns you want to map: </td>
                 <td><select  id="columnNumber">
                     <option selected>0</option>
                     <option >1</option>
@@ -51,10 +52,9 @@
                     <option >10</option>
                 </select></td>
                 </tr>
-            
     </table>
+ 
 </div>
-
 <div id="step2">
  <table id="pkColumnTable">
 <tr>
