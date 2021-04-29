@@ -86,8 +86,7 @@ function createrows(){
     }
     var row = table.insertRow(i);
     var cell1 = row.insertCell(0);
-   // cell1.innerHTML="Primary Destination Column "+i;
-    document.getElementById("fontdesign").cell1.innerHTML="Primary Destination Column "+i;
+    cell1.innerHTML="Primary Destination Column "+i;
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
     element1.id="pkSrcCloumnName"+i;
