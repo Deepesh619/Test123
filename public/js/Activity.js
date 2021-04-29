@@ -1,16 +1,20 @@
-   
-   var payload = {};
+  
+// Declaring the global variables
+var payload = {};
    var connection = new Postmonger.Session();
    var steps = [
    {'key': 'dekey', 'label': 'Select Data Extension key'},
    {'key': 'DEmapping', 'label': 'Mapping'}
 ];
-
 var currentStep = steps[0].key;
 var pkColumnNumber = 0;
 var columnNumber = 0;
+var eventDefinitionKey;
 
 connection.trigger('ready');
+
+// Below event is executed when activity is loaded on UI
+
 connection.on('initActivity',function(data){
    console.log(data);
    if (data) {
@@ -18,8 +22,6 @@ connection.on('initActivity',function(data){
    }
    var pkColumnNumberData =  payload['arguments'].execute.inArguments[0].pkColumnNumber;
    var columnNumberData =  payload['arguments'].execute.inArguments[0].columnNumber;
-   var test =  payload['arguments'].execute.inArguments[0]['pkSrcCloumnName'+'1'];
-   console.log('pkSrcCloumnName1 is : ' + test);
    document.getElementById('DEName').value= payload['arguments'].execute.inArguments[0].DEName;
    document.getElementById('pkColumnNumber').value= pkColumnNumberData;
    document.getElementById('columnNumber').value= columnNumberData;
@@ -33,16 +35,18 @@ connection.on('initActivity',function(data){
     document.getElementById('destCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['destCloumnName'+i];
    }
 }); 
-var eventDefinitionKey;
-connection.trigger('requestTriggerEventDefinition');
 
+// Below event is executed any and is used to get the event definition key
+
+connection.trigger('requestTriggerEventDefinition');
 connection.on('requestedTriggerEventDefinition',
 function(eventDefinitionModel) {
-//console.log('EVENT definition from req trigger Event- '+JSON.stringify(eventDefinitionModel));
    if(eventDefinitionModel){
      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
    }
 }); 
+
+// Below event is executed when next/Done/Back is clicked on UI
 
 connection.on('clickedNext',onClickedNext);
 connection.on('clickedBack', onClickedBack);
@@ -50,15 +54,15 @@ connection.on('gotoStep', onGotoStep);
 
 
 function onClickedNext () {
-    console.log('Current step'+currentStep.key);
    if (currentStep.key == 'DEmapping') {
        save();
    } else {
-    console.log('Is it in else part: ');
     createrows();
        connection.trigger('nextStep');
    }
 }
+
+// deleteRows function is used to delete the rows from table
 
 function deleteRows(table,rowCount,columnCount){
     do{
@@ -67,6 +71,8 @@ function deleteRows(table,rowCount,columnCount){
     }
     while(rowCount>columnCount);
 }
+
+// deleteRows function is used to add the rows into the table
 
 function createrows(){
     pkColumnNumber = parseInt(document.getElementById('pkColumnNumber').value);
@@ -121,16 +127,20 @@ function createrows(){
     }
 }
 
+// onClickedBack function is called when user click on back button on UI
+
 function onClickedBack () {
    connection.trigger('prevStep');
 }
 
+// onGotoStep function is called when user click on back/Next button on UI
 
 function onGotoStep (step) {
-    console.log('IN GOTO step ')
    showStep(step);
    connection.trigger('ready');
 }
+
+// showStep function is used to hide/show content in the UI
 
 function showStep (step, stepIndex) {
    if (stepIndex && !step) {
@@ -154,7 +164,7 @@ function showStep (step, stepIndex) {
    }
 }
 
-
+// save function is used to save the content from the UI
 
 function save () {
     var DEName = document.getElementById('DEName').value;
@@ -184,7 +194,6 @@ function save () {
    payload['metaData'].isConfigured = true;
    payload['key'] = 'REST-1';
    payload['type'] = 'REST';
-   console.log('Total PAyload: - '+JSON.stringify(payload));
    connection.trigger('updateActivity', payload);
 }
 

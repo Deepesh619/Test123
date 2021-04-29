@@ -18,7 +18,9 @@
             "inArguments": [{
           "DEName":"Enter the External Key",
           "pkColumnNumber":"1",
-          "columnNumber":"0"
+          "columnNumber":"0",
+          "pkSrcCloumnName1" : "",
+          "pkDestCloumnName1" : ""
             }],
             "outArguments": [],
             "timeout": 100000,
