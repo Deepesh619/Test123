@@ -1,8 +1,7 @@
 {
     "workflowApiVersion": "1.1",
     "metaData": {
-        "icon": "images/heartbeat.jpg",
-        "iconSmall": "images/heartbeat.jpg",
+        "icon": "images/pulse.jpg",
         "category": "custom"
     },
     "key":"REST-1",
