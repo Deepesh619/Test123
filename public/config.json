@@ -19,8 +19,8 @@
           "DEName":"Enter the External Key",
           "pkColumnNumber":"1",
           "columnNumber":"0",
-          "pkSrcColumnName1" : "Enter",
-          "pkDestColumnName1" : "Enter"
+          "pkSrcColumnName1" : " ",
+          "pkDestColumnName1" : " "
             }],
             "outArguments": [],
             "timeout": 100000,
