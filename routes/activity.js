@@ -110,13 +110,13 @@ exports.execute = function (req, res) {
           var setKey={};
           var setValues={};
           for (var i=1;i<=pkColumnNumberData;i++){
-            var destColumnName = decoded.inArguments[0]['pkDestCloumnName'+i];
-            var srcColumnValue = decoded.inArguments[0]['pkSrcCloumnValue'+i];
+            var destColumnName = decoded.inArguments[0]['pkDestColumnName'+i];
+            var srcColumnValue = decoded.inArguments[0]['pkSrcColumnValue'+i];
             setKey[destColumnName]=srcColumnValue;
            }
            for (var i=1;i<=columnNumberData;i++){
-            var destColumnName = decoded.inArguments[0]['destCloumnName'+i];
-            var srcColumnValue = decoded.inArguments[0]['srcCloumnValue'+i];
+            var destColumnName = decoded.inArguments[0]['destColumnName'+i];
+            var srcColumnValue = decoded.inArguments[0]['srcColumnValue'+i];
             setValues[destColumnName]=srcColumnValue;
            }
             rowData = [{

@@ -27,12 +27,12 @@ connection.on('initActivity',function(data){
    document.getElementById('columnNumber').value= columnNumberData;
    createrows();
    for (var i=1;i<=pkColumnNumberData;i++){
-    document.getElementById('pkSrcCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkSrcCloumnName'+i];
-    document.getElementById('pkDestCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkDestCloumnName'+i];
+    document.getElementById('pkSrcColumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkSrcColumnName'+i];
+    document.getElementById('pkDestColumnName'+i).value = payload['arguments'].execute.inArguments[0]['pkDestColumnName'+i];
    }
    for (var i=1;i<=columnNumberData;i++){
-    document.getElementById('srcCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['srcCloumnName'+i];
-    document.getElementById('destCloumnName'+i).value = payload['arguments'].execute.inArguments[0]['destCloumnName'+i];
+    document.getElementById('srcColumnName'+i).value = payload['arguments'].execute.inArguments[0]['srcColumnName'+i];
+    document.getElementById('destColumnName'+i).value = payload['arguments'].execute.inArguments[0]['destColumnName'+i];
    }
 }); 
 
@@ -86,7 +86,7 @@ function createrows(){
         deleteRows(table,rowCount,pkColumnNumber);
     } 
     for (var i=1;i<=pkColumnNumber;i++){
-    var htmlId = document.getElementById('pkSrcCloumnName'+i);
+    var htmlId = document.getElementById('pkSrcColumnName'+i);
     if (htmlId != null) {
        continue;
     }
@@ -95,11 +95,11 @@ function createrows(){
     cell1.innerHTML="Primary Destination Column "+i;
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
-    element1.id="pkSrcCloumnName"+i;
+    element1.id="pkSrcColumnName"+i;
     cell2.appendChild(element1);
     var cell3 = row.insertCell(2);
     var element2 = document.createElement("textarea");
-    element2.id="pkDestCloumnName"+i;
+    element2.id="pkDestColumnName"+i;
     cell3.appendChild(element2);
     }
     var table2 = document.getElementById('columnTable');
@@ -109,7 +109,7 @@ function createrows(){
         deleteRows(table2,rowCount2,columnNumber);
     } 
     for (var i=1;i<=columnNumber;i++){
-    var htmlId = document.getElementById('srcCloumnName'+i);
+    var htmlId = document.getElementById('srcColumnName'+i);
     if (htmlId != null) {
        continue;
     }
@@ -118,11 +118,11 @@ function createrows(){
     cell1.innerHTML="Non-Primary Destination Column "+i;
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
-    element1.id="srcCloumnName"+i;
+    element1.id="srcColumnName"+i;
     cell2.appendChild(element1);
     var cell3 = row.insertCell(2);
     var element2 = document.createElement("textarea");
-    element2.id="destCloumnName"+i;
+    element2.id="destColumnName"+i;
     cell3.appendChild(element2);
     }
 }
@@ -171,18 +171,18 @@ function save () {
     console.log('DEName: '+DEName);
     var inArguments = {};
     for (var i=1;i<=pkColumnNumber;i++){
-        var sourceColumnName = document.getElementById('pkSrcCloumnName'+i).value;
-        var destColumnName = document.getElementById('pkDestCloumnName'+i).value;
-        inArguments["pkSrcCloumnName"+i]=sourceColumnName;
-        inArguments["pkSrcCloumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
-        inArguments["pkDestCloumnName"+i]=destColumnName;
+        var sourceColumnName = document.getElementById('pkSrcColumnName'+i).value;
+        var destColumnName = document.getElementById('pkDestColumnName'+i).value;
+        inArguments["pkSrcColumnName"+i]=sourceColumnName;
+        inArguments["pkSrcColumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
+        inArguments["pkDestColumnName"+i]=destColumnName;
     }
     for (var i=1;i<=columnNumber;i++){
-        var sourceColumnName = document.getElementById('srcCloumnName'+i).value;
-        var destColumnName = document.getElementById('destCloumnName'+i).value;
-        inArguments["srcCloumnName"+i]=sourceColumnName;
-        inArguments["srcCloumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
-        inArguments["destCloumnName"+i]=destColumnName;
+        var sourceColumnName = document.getElementById('srcColumnName'+i).value;
+        var destColumnName = document.getElementById('destColumnName'+i).value;
+        inArguments["srcColumnName"+i]=sourceColumnName;
+        inArguments["srcColumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
+        inArguments["destColumnName"+i]=destColumnName;
     }
     inArguments["pkColumnNumber"]=pkColumnNumber;
     inArguments["columnNumber"]=columnNumber;
