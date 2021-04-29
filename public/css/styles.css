@@ -10,3 +10,8 @@ body {
 #step1 {
     display: block;
 }
+
+#fontdesign {
+    font-weight: bold;
+    font-family:system-ui;
+}

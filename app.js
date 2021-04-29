@@ -22,6 +22,8 @@ app.use(bodyParser.raw({type: 'application/jwt'}));
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+//Deepesh
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 // Express in Development Mode
 if ('development' == app.get('env')) {
