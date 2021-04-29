@@ -64,7 +64,7 @@ function deleteRows(table,rowCount,columnCount){
         table.deleteRow(rowCount);
         rowCount--;
     }
-    while(rowCount==columnCount);
+    while(rowCount>columnCount);
 }
 
 function createrows(){
@@ -99,7 +99,7 @@ function createrows(){
     var rowCount2 = table2.rows.length-1; 
     console.log('rowCount2 : ' + rowCount2);
     if (rowCount2 > columnNumber){
-        deleteRows(table,rowCount2,columnNumber);
+        deleteRows(table2,rowCount2,columnNumber);
     } 
     for (var i=1;i<=columnNumber;i++){
     var htmlId = document.getElementById('srcCloumnName'+i);
