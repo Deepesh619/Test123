@@ -1,8 +1,5 @@
 'use strict';
 var util = require('util');
-var express = require('express');
-
-//var CircularJSON = require('circular-json');
 
 // Deps
 const Path = require('path');
@@ -12,7 +9,23 @@ var http = require('https');
 var querystring = require('querystring');
 const { Console } = require('console');
 exports.logExecuteData = [];
-//var rowData= [];
+
+// Variables Decleration
+var authHost = process.env.authHost;
+var authEndpoint = '/v2/token';
+var authData = {
+  "grant_type": "client_credentials",
+  "scope": null,
+  "account_id": process.env.acctId,
+  "client_id": process.env.clientId,
+  "client_secret":process.env.clientSecret
+};
+var authHeaders = {
+  'Content-Type': 'application/json'
+};
+var MCHost = process.env.mcHost;
+var MCEndpoint = '';
+var method="POST";
 
 function logData(req) {
     exports.logExecuteData.push({
@@ -75,73 +88,11 @@ exports.save = function (req, res) {
  * POST Handler for /execute/ route of Activity.
  */
 
-var authHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.auth.marketingcloudapis.com';
-var authEndpoint = '/v2/token';
-var authData = {
-  "grant_type": "client_credentials",
-  "scope": null,
-  "account_id": "518002598",
-  "client_id": "1ye7xpmi31xwlu7xotjkauyv",
-  "client_secret":"Z3bAfZPzvGM05d7cu05RVTmx"  
-};
-var authHeaders = {
-  'Content-Type': 'application/json'
-};
-var accesstoken=null;
-  
-var MCHost = 'mcllzpmqql69yd9kvcz1n-mj1fqy.rest.marketingcloudapis.com';
-var MCEndpoint = '';
-  
-var method="POST";
-
-function  performPostRequest(endpoint,host,headers, method, data, success) {
-    var dataString = JSON.stringify(data);
-    console.log(headers);
-    var options = {
-      host: host,
-      path: endpoint,
-      method: method,
-      headers: headers
-    };
-  
-    var req = http.request(options, function(res) {
-      res.setEncoding('utf-8');
-  
-      var responseString = '';
-  
-      res.on('data', function(data) {
-        responseString += data;
-      });
-  
-      res.on('end', function() {
-       // console.log(responseString);
-       var responseObject =  JSON.parse(responseString);
-        success(responseObject);
-      });
-    });
-    req.write(dataString);
-    req.end();
-  }
-
-
-  function insertRecordsIntoDE(rowData,accesstoken){
-    var MCHeaders = {
-      'Content-Type': 'application/json',
-      'Authorization' : 'Bearer ' + accesstoken
-    };
-    console.log('Row data From Inarguments'+JSON.stringify(rowData));
-    performPostRequest(MCEndpoint,MCHost,MCHeaders, method, rowData, function(data) {
-      console.log(data);
-    });
-  }
-
-  
-
 exports.execute = function (req, res) {
 
   var rowData=[];
   var accesstoken=null;
-  
+    // JSON Web Token is used to read the request from Journey Builder
       JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
         // verification error -> unauthorized request
@@ -154,31 +105,25 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             MCEndpoint = '/hub/v1/dataevents/key:'+ decoded.inArguments[0].DEName +'/rowset' ;          
-          //  console.log("Value of Src Col1 from inArgument : " + decoded.inArguments[0].srcCloumnValue1);
-          //  console.log("Value of Src Col2 from inArgument : " + decoded.inArguments[0].srcCloumnValue2);
-          //  console.log("Dest Col1 from inArgument : " + decoded.inArguments[0].pkDestCloumnName1);
-          //  console.log("Dest Col2 from inArgument : " + decoded.inArguments[0].destCloumnName2);
           var pkColumnNumberData =  decoded.inArguments[0].pkColumnNumber;
           var columnNumberData =  decoded.inArguments[0].columnNumber;
           var setKey={};
           var setValues={};
           for (var i=1;i<=pkColumnNumberData;i++){
-            var destColumnName = decoded.inArguments[0]['pkDestCloumnName'+i];
-            var srcColumnValue = decoded.inArguments[0]['pkSrcCloumnValue'+i];
+            var destColumnName = decoded.inArguments[0]['pkDestColumnName'+i];
+            var srcColumnValue = decoded.inArguments[0]['pkSrcColumnValue'+i];
             setKey[destColumnName]=srcColumnValue;
            }
            for (var i=1;i<=columnNumberData;i++){
-            var destColumnName = decoded.inArguments[0]['destCloumnName'+i];
-            var srcColumnValue = decoded.inArguments[0]['srcCloumnValue'+i];
+            var destColumnName = decoded.inArguments[0]['destColumnName'+i];
+            var srcColumnValue = decoded.inArguments[0]['srcColumnValue'+i];
             setValues[destColumnName]=srcColumnValue;
            }
             rowData = [{
               "keys":setKey,
               "values":setValues             
                     }]; 
-                    console.log('Row Data :'+ JSON.stringify(rowData));     
-
-            //res.send(200, 'Execute');
+                    console.log('Row Data :'+ JSON.stringify(rowData));              
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
@@ -186,16 +131,14 @@ exports.execute = function (req, res) {
     }); 
     
     console.log('MCEndpoint is : ', MCEndpoint);
-      //  logData(req);
+    // Calling performPostRequest to fetch the access token
      performPostRequest(authEndpoint,authHost,authHeaders, method, authData, function(data) {
         accesstoken = data.access_token;
         console.log('Access token is: ', accesstoken);
+        // After getting access token, calling insertRecordsIntoDE to insert the records
         insertRecordsIntoDE(rowData,accesstoken);
       });
-     res.send(200, 'Execute'); 
-
-    // example on how to decode JWT
-     
+     res.send(200, 'Execute');     
 };
 
 
@@ -213,9 +156,57 @@ exports.publish = function (req, res) {
 /*
  * POST Handler for /validate/ route of Activity.
  */
+
 exports.validate = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
     res.send(200, 'Validate');
 };
+
+/*
+ * Below function is used to perform the rest call.
+ */
+
+function  performPostRequest(endpoint,host,headers, method, data, success) {
+  var dataString = JSON.stringify(data);
+  console.log(headers);
+  var options = {
+    host: host,
+    path: endpoint,
+    method: method,
+    headers: headers
+  };
+
+  var req = http.request(options, function(res) {
+    res.setEncoding('utf-8');
+
+    var responseString = '';
+
+    res.on('data', function(data) {
+      responseString += data;
+    });
+
+    res.on('end', function() {
+     var responseObject =  JSON.parse(responseString);
+      success(responseObject);
+    });
+  });
+  req.write(dataString);
+  req.end();
+}
+
+/*
+ * Below function is used to insert the records into DE.
+ */
+
+function insertRecordsIntoDE(rowData,accesstoken){
+  var MCHeaders = {
+    'Content-Type': 'application/json',
+    'Authorization' : 'Bearer ' + accesstoken
+  };
+  console.log('Row data From Inarguments'+JSON.stringify(rowData));
+  performPostRequest(MCEndpoint,MCHost,MCHeaders, method, rowData, function(data) {
+    console.log(data);
+  });
+}
