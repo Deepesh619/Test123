@@ -86,7 +86,7 @@ function createrows(){
     }
     var row = table.insertRow(i);
     var cell1 = row.insertCell(0);
-    cell1.innerHTML="Primary Destination Column "+i;
+    cell1.innerHTML="Primary Column "+i;
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
     element1.id="pkSrcCloumnName"+i;
@@ -109,7 +109,7 @@ function createrows(){
     }
     var row = table2.insertRow(i);
     var cell1 = row.insertCell(0);
-    cell1.innerHTML="Non-Primary Destination Column "+i;
+    cell1.innerHTML="Non-Primary Column "+i;
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
     element1.id="srcCloumnName"+i;
