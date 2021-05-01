@@ -174,14 +174,14 @@ function save () {
         var sourceColumnName = document.getElementById('pkSrcColumnName'+i).value;
         var destColumnName = document.getElementById('pkDestColumnName'+i).value;
         inArguments["pkSrcColumnName"+i]=sourceColumnName;
-        inArguments["pkSrcColumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
+        inArguments["pkSrcColumnValue"+i]="{{Event."+ eventDefinitionKey +".\""+sourceColumnName+"\"}}";
         inArguments["pkDestColumnName"+i]=destColumnName;
     }
     for (var i=1;i<=columnNumber;i++){
         var sourceColumnName = document.getElementById('srcColumnName'+i).value;
         var destColumnName = document.getElementById('destColumnName'+i).value;
         inArguments["srcColumnName"+i]=sourceColumnName;
-        inArguments["srcColumnValue"+i]="{{Event."+ eventDefinitionKey +"."+sourceColumnName+"}}";
+        inArguments["srcColumnValue"+i]="{{Event."+ eventDefinitionKey +".\""+sourceColumnName+"\"}}";
         inArguments["destColumnName"+i]=destColumnName;
     }
     inArguments["pkColumnNumber"]=pkColumnNumber;
