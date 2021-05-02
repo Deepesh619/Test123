@@ -116,6 +116,11 @@ function createrows(){
     var row = table2.insertRow(i);
     var cell1 = row.insertCell(0);
     cell1.innerHTML="Non-Primary Column "+i;
+    // Code for Checkbox Start
+    var checkBoxElement1 = document.createElement("checkbox");
+    checkBoxElement1.id="checkBoxElement" + i;
+    cell1.appendChild(checkBoxElement1);
+    //Code for checkbox Stop
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
     element1.id="srcColumnName"+i;
