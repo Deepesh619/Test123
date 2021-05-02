@@ -191,7 +191,7 @@ function save () {
         var enableDefaultValue = document.getElementById('checkBoxElement'+i).checked;
         inArguments["enableDefaultValue"+i]=enableDefaultValue;
         inArguments["srcColumnName"+i]=sourceColumnName;
-        if (enableDefaultValue == 'true'){
+        if (enableDefaultValue == true){
         inArguments["srcColumnValue"+i]=sourceColumnName;
         }
         else {
