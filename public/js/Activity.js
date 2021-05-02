@@ -115,13 +115,7 @@ function createrows(){
     }
     var row = table2.insertRow(i);
     var cell1 = row.insertCell(0);
-    cell1.innerHTML="Non-Primary Column "+i;
-    // Code for Checkbox Start
-    var checkBoxElement1 = document.createElement("input");
-    checkBoxElement1.type="checkbox"
-    checkBoxElement1.id="checkBoxElement" + i;
-    cell1.appendChild(checkBoxElement1);
-    //Code for checkbox Stop
+    cell1.innerHTML="Non-Primary Column "+i+"&nbsp;";
     var cell2 = row.insertCell(1);
     var element1 = document.createElement("textarea");
     element1.id="srcColumnName"+i;
@@ -130,6 +124,13 @@ function createrows(){
     var element2 = document.createElement("textarea");
     element2.id="destColumnName"+i;
     cell3.appendChild(element2);
+    var cell4 = row.insertCell(3);
+    // Code for Checkbox Start
+    var checkBoxElement1 = document.createElement("input");
+    checkBoxElement1.type="checkbox"
+    checkBoxElement1.id="checkBoxElement" + i;
+    cell4.appendChild(checkBoxElement1);
+    //Code for checkbox Stop
     }
 }
 
