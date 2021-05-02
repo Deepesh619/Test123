@@ -117,7 +117,8 @@ function createrows(){
     var cell1 = row.insertCell(0);
     cell1.innerHTML="Non-Primary Column "+i;
     // Code for Checkbox Start
-    var checkBoxElement1 = document.createElement("checkbox");
+    var checkBoxElement1 = document.createElement("input");
+    checkBoxElement1.type="checkbox"
     checkBoxElement1.id="checkBoxElement" + i;
     cell1.appendChild(checkBoxElement1);
     //Code for checkbox Stop
